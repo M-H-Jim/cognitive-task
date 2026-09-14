@@ -1,0 +1,74 @@
+.digit-span {
+    width: 600px;
+    text-align: center;
+}
+
+.digit-span h1 {
+    margin-bottom: 10px;
+}
+
+.instruction {
+    color: #bbbbbb;
+}
+
+.digit-display {
+    height: 150px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    margin: 30px 0;
+
+    font-size: 64px;
+    font-weight: bold;
+}
+
+.answer-input {
+    width: 300px;
+
+    padding: 12px;
+
+    border: 2px solid #444;
+    border-radius: 7px;
+
+    background: #252525;
+    color: white;
+
+    font-size: 24px;
+    text-align: center;
+
+    outline: none;
+}
+
+.answer-input:focus {
+    border-color: white;
+}
+
+.digit-span button {
+    padding: 12px 25px;
+
+    margin: 10px 5px;
+
+    border: none;
+    border-radius: 7px;
+
+    font-size: 16px;
+
+    cursor: pointer;
+}
+
+.digit-span button:disabled {
+    opacity: 0.4;
+    cursor: default;
+}
+
+.status {
+    min-height: 25px;
+    margin: 15px;
+}
+
+.start-button {
+    background: white;
+    color: #181818;
+}

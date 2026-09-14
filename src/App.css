@@ -1,0 +1,51 @@
+.app {
+    min-height: 100vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.card {
+    width: 500px;
+    padding: 40px;
+
+    background: #1f2937;
+    border-radius: 16px;
+
+    text-align: center;
+}
+
+.card h1 {
+    margin-top: 0;
+}
+
+.card input {
+    width: 100%;
+    padding: 12px;
+
+    margin: 20px 0;
+
+    border: none;
+    border-radius: 8px;
+
+    font-size: 16px;
+}
+
+.card button {
+    padding: 12px 24px;
+
+    border: none;
+    border-radius: 8px;
+
+    background: #2563eb;
+    color: white;
+
+    font-size: 16px;
+
+    cursor: pointer;
+}
+
+.card button:hover {
+    background: #1d4ed8;
+}

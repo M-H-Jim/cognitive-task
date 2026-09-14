@@ -1,0 +1,151 @@
+.corsi {
+    width: 650px;
+    text-align: center;
+}
+
+.corsi h1 {
+    margin-bottom: 10px;
+}
+
+.instruction {
+    color: #bbbbbb;
+}
+
+
+/* Corsi board */
+
+.board {
+    position: relative;
+
+    width: 600px;
+    height: 500px;
+
+    margin: 30px auto;
+
+    background: #202020;
+
+    border-radius: 12px;
+}
+
+
+/* Individual blocks */
+
+.block {
+    position: absolute;
+
+    width: 70px;
+    height: 70px;
+
+    border: none;
+    border-radius: 10px;
+
+    background: #444;
+
+    cursor: pointer;
+
+    transition:
+        background 0.15s,
+        transform 0.1s;
+}
+
+
+/* Scattered fixed positions */
+
+.block:nth-child(1) {
+    left: 60px;
+    top: 70px;
+}
+
+.block:nth-child(2) {
+    left: 250px;
+    top: 45px;
+}
+
+.block:nth-child(3) {
+    left: 450px;
+    top: 90px;
+}
+
+.block:nth-child(4) {
+    left: 140px;
+    top: 200px;
+}
+
+.block:nth-child(5) {
+    left: 340px;
+    top: 170px;
+}
+
+.block:nth-child(6) {
+    left: 500px;
+    top: 300px;
+}
+
+.block:nth-child(7) {
+    left: 50px;
+    top: 350px;
+}
+
+.block:nth-child(8) {
+    left: 250px;
+    top: 330px;
+}
+
+.block:nth-child(9) {
+    left: 410px;
+    top: 410px;
+}
+
+
+/* Block lighting up */
+
+.block.active {
+    background: white;
+
+    transform: scale(1.08);
+}
+
+
+/* Participant's selected blocks */
+
+.block.selected {
+    background: #4caf50;
+}
+
+
+/* Prevent clicking */
+
+.block:disabled {
+    pointer-events: none;
+    cursor: default;
+}
+
+
+/* Status */
+
+.status {
+    min-height: 24px;
+    margin: 10px;
+}
+
+
+/* Start button */
+
+.startButton {
+    padding: 12px 28px;
+
+    border: none;
+    border-radius: 7px;
+
+    background: #ffffff;
+    color: #181818;
+
+    font-size: 16px;
+
+    cursor: pointer;
+}
+
+.startButton:disabled {
+    opacity: 0.5;
+    cursor: default;
+}

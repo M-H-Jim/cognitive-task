@@ -1,0 +1,94 @@
+.trail-making {
+    width: 900px;
+    text-align: center;
+}
+
+.trail-making h1 {
+    margin-bottom: 10px;
+}
+
+.instruction {
+    color: #bbbbbb;
+}
+
+.test-area {
+    position: relative;
+
+    width: 850px;
+    height: 600px;
+
+    margin: 25px auto;
+
+    background: #202020;
+
+    border-radius: 12px;
+}
+
+.trail-circle {
+    position: absolute;
+
+    width: 48px;
+    height: 48px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border: 2px solid white;
+    border-radius: 50%;
+
+    background: #303030;
+    color: white;
+
+    font-size: 17px;
+    font-weight: bold;
+
+    cursor: pointer;
+
+    user-select: none;
+
+    transform: translate(-50%, -50%);
+}
+
+.trail-circle:hover {
+    background: #444;
+}
+
+.trail-circle.correct {
+    background: #4caf50;
+    border-color: #4caf50;
+
+    pointer-events: none;
+}
+
+.trail-circle.wrong {
+    animation: wrongFlash 300ms;
+}
+
+@keyframes wrongFlash {
+    0% {
+        background: #f44336;
+    }
+
+    100% {
+        background: #303030;
+    }
+}
+
+.status {
+    min-height: 24px;
+}
+
+.start-button {
+    padding: 12px 28px;
+
+    border: none;
+    border-radius: 7px;
+
+    font-size: 16px;
+
+    cursor: pointer;
+
+    background: white;
+    color: #181818;
+}
