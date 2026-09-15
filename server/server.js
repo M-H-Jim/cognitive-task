@@ -31,7 +31,7 @@ app.post("/participants", async (req, res) => {
             digit_span_score, digit_span_percentile,
             trail_a,
             trail_b,
-            trail_difference,
+            trail_difference, trail_b_percentile,
             correct_presses,
             false_presses,
             missed_sevens,
@@ -40,7 +40,7 @@ app.post("/participants", async (req, res) => {
             post_digit_span_score, post_digit_span_percentile,
             post_trail_a,
             post_trail_b,
-            post_trail_difference,
+            post_trail_difference, post_trail_b_percentile,
 
             clt_01,
             clt_02,
@@ -81,7 +81,7 @@ app.post("/participants", async (req, res) => {
             digit_span_score, digit_span_percentile,
             trail_a, 
             trail_b, 
-            trail_difference, 
+            trail_difference, trail_b_percentile,
             correct_presses, 
             false_presses, 
             missed_sevens, 
@@ -90,7 +90,7 @@ app.post("/participants", async (req, res) => {
             post_digit_span_score, post_digit_span_percentile,
             post_trail_a,
             post_trail_b,
-            post_trail_difference,
+            post_trail_difference, post_trail_b_percentile,
 
             clt_01,
             clt_02,
@@ -129,7 +129,7 @@ app.post("/participants", async (req, res) => {
                 $32, $33, $34, $35, $36,
                 $37, $38, $39, $40, $41,
 
-                $42, $43, $44, $45, $46
+                $42, $43, $44, $45, $46, $47, $48
             )
             RETURNING *`,
             [
@@ -139,7 +139,7 @@ app.post("/participants", async (req, res) => {
                 digit_span_score, digit_span_percentile,
                 trail_a,
                 trail_b,
-                trail_difference,
+                trail_difference, trail_b_percentile,
                 correct_presses,
                 false_presses,
                 missed_sevens,
@@ -148,7 +148,7 @@ app.post("/participants", async (req, res) => {
                 post_digit_span_score, post_digit_span_percentile,
                 post_trail_a,
                 post_trail_b,
-                post_trail_difference,
+                post_trail_difference, post_trail_b_percentile,
 
                 clt_01,
                 clt_02,

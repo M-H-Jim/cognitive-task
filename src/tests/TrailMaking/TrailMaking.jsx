@@ -197,9 +197,9 @@ function TrailMaking({ onComplete }) {
                 return;
             }
 
-            setStatus(
-                `Next: ${getExpectedValue(nextTarget, currentPart)}`
-            );
+            // setStatus(
+            //     `Next: ${getExpectedValue(nextTarget, currentPart)}`
+            // );   // temporal comment
 
             return;
         }
@@ -214,6 +214,39 @@ function TrailMaking({ onComplete }) {
         setTimeout(() => {
             setWrongCircle(null);
         }, 300);
+    }
+
+    function getPercentile(time) {
+
+        if (time <= 38) {
+            return 93;
+        }
+
+        if (time <= 48) {
+            return Math.round(
+                93 - ((time - 38) / (48 - 38)) * (93 - 75)
+            );
+        }
+
+        if (time <= 62) {
+            return Math.round(
+                75 - ((time - 48) / (62 - 48)) * (75 - 50)
+            );
+        }
+
+        if (time <= 80) {
+            return Math.round(
+                50 - ((time - 62) / (80 - 62)) * (50 - 25)
+            );
+        }
+
+        if (time <= 105) {
+            return Math.round(
+                25 - ((time - 80) / (105 - 80)) * (25 - 7)
+            );
+        }
+
+        return 7;
     }
 
     function finishPartA(currentStartTime) {
@@ -243,13 +276,16 @@ function TrailMaking({ onComplete }) {
         const difference =
             time - partATime;
 
+        const percentile = getPercentile(time);
+        
         setPartBTime(time);
         setTimerRunning(false);
 
         const result = {
             partA: partATime,
             partB: time,
-            difference: difference
+            difference: difference,
+            percentile: percentile
         };
 
         setStatus(
@@ -259,6 +295,7 @@ function TrailMaking({ onComplete }) {
         );
 
         console.log("Trail Making result:", result);
+        console.log("Trail B percentile:", percentile);
 
         // Send result to App.jsx
         onComplete(result);
@@ -278,6 +315,21 @@ function TrailMaking({ onComplete }) {
                 {circles.map(circle => (
                     <div
                         key={circle.value}
+                        // className={`
+                        //     trail-circle
+                        //     ${
+                        //         correctCircles.includes(circle.value)
+                        //             ? "correct"
+                        //             : ""
+                        //     }
+                        //     ${
+                        //         wrongCircle === circle.value
+                        //             ? "wrong"
+                        //             : ""
+                        //     }
+                        // `}   // temporal comment
+
+
                         className={`
                             trail-circle
                             ${
@@ -290,7 +342,15 @@ function TrailMaking({ onComplete }) {
                                     ? "wrong"
                                     : ""
                             }
+                            ${
+                                circle.value === getExpectedValue() &&
+                                !correctCircles.includes(circle.value)
+                                    ? "target"
+                                    : ""
+                            }
                         `}
+
+
                         style={{
                             left: `${circle.x}%`,
                             top: `${circle.y}%`

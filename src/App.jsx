@@ -22,7 +22,8 @@ function App() {
     const [preTrailMakingResult, setPreTrailMakingResult] = useState({
         partA: 4,
         partB: 5,
-        difference: 1
+        difference: 1,
+        percentile: null
     });
 
     const [group, setGroup] = useState(null);
@@ -42,7 +43,8 @@ function App() {
     const [postTrailMakingResult, setPostTrailMakingResult] = useState({
         partA: 4,
         partB: 5,
-        difference: 1
+        difference: 1,
+        percentile: null
     });
 
 
@@ -58,7 +60,7 @@ function App() {
             return;
         }
 
-        setScreen("digit-span"); // this should be corsi but for now group
+        setScreen("trail-making"); // this should be corsi but for now group
         // temp
         const groups = ["AI", "Non-AI", "Control"];
         const randomGroup = groups[Math.floor(Math.random() * groups.length)];
@@ -84,13 +86,13 @@ function App() {
         console.log("Pre-Digit Span score:", score);
         console.log("Pre-Digit Span percentile:", percentile);
 
-        setScreen("results");
+        setScreen("trail-making");   // trail-making
     }
 
     function handlePreTrailMakingComplete(result) {
         setPreTrailMakingResult(result);
         console.log("Pre-Trail Making result:", result);
-        setScreen("treatment");
+        setScreen("results"); // treatment
     }
 
 
@@ -140,6 +142,7 @@ function App() {
                     trail_a: preTrailMakingResult.partA,
                     trail_b: preTrailMakingResult.partB,
                     trail_difference: preTrailMakingResult.difference,
+                    trail_b_percentile: preTrailMakingResult.percentile,
                     correct_presses: correctPresses,
                     false_presses: falsePresses,
                     missed_sevens: missedSevens,
@@ -148,6 +151,7 @@ function App() {
                     post_corsi_percentile: postCorsiPercentile,
                     post_digit_span_score: postDigitSpanScore,
                     post_digit_span_percentile: postDigitSpanPercentile,
+                    post_trail_b_percentile: postTrailMakingResult.percentile,
                     post_trail_a: postTrailMakingResult.partA,
                     post_trail_b: postTrailMakingResult.partB,
                     post_trail_difference: postTrailMakingResult.difference,
