@@ -27,7 +27,7 @@ app.post("/participants", async (req, res) => {
         const {
             name,
             group_name,
-            corsi_score,
+            corsi_score, corsi_percentile,
             digit_span_score,
             trail_a,
             trail_b,
@@ -36,7 +36,7 @@ app.post("/participants", async (req, res) => {
             false_presses,
             missed_sevens,
             summary,
-            post_corsi_score,
+            post_corsi_score, post_corsi_percentile,
             post_digit_span_score,
             post_trail_a,
             post_trail_b,
@@ -77,7 +77,7 @@ app.post("/participants", async (req, res) => {
             `INSERT INTO participants
             (name, 
             group_name, 
-            corsi_score, 
+            corsi_score, corsi_percentile,
             digit_span_score, 
             trail_a, 
             trail_b, 
@@ -86,7 +86,7 @@ app.post("/participants", async (req, res) => {
             false_presses, 
             missed_sevens, 
             summary,
-            post_corsi_score,
+            post_corsi_score, post_corsi_percentile,
             post_digit_span_score,
             post_trail_a,
             post_trail_b,
@@ -129,13 +129,13 @@ app.post("/participants", async (req, res) => {
                 $32, $33, $34, $35, $36,
                 $37, $38, $39, $40, $41,
 
-                $42
+                $42, $43, $44
             )
             RETURNING *`,
             [
                 name,
                 group_name,
-                corsi_score,
+                corsi_score, corsi_percentile,
                 digit_span_score,
                 trail_a,
                 trail_b,
@@ -144,7 +144,7 @@ app.post("/participants", async (req, res) => {
                 false_presses,
                 missed_sevens,
                 summary,
-                post_corsi_score,
+                post_corsi_score, post_corsi_percentile,
                 post_digit_span_score,
                 post_trail_a,
                 post_trail_b,

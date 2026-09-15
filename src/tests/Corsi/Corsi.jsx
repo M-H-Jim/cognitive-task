@@ -2,14 +2,13 @@ import { useState } from "react";
 import "./Corsi.css";
 
 function Corsi({ onComplete }) {
+
     const [currentLength, setCurrentLength] = useState(2);
     const [sequence, setSequence] = useState([]);
     const [userSequence, setUserSequence] = useState([]);
     const [misses, setMisses] = useState(0);
-
     const [activeBlock, setActiveBlock] = useState(null);
     const [selectedBlocks, setSelectedBlocks] = useState([]);
-
     const [acceptingInput, setAcceptingInput] = useState(false);
     const [started, setStarted] = useState(false);
 
@@ -19,10 +18,32 @@ function Corsi({ onComplete }) {
 
     const blocks = Array.from({ length: 9 }, (_, index) => index);
 
+    function getPercentile(score) {
+        if (score >= 8) {
+            return 93;
+        }
+
+        if (score === 5) {
+            return 25;
+        }
+
+        if (score === 6) {
+            return 50;
+        }
+
+        if (score === 7) {
+            return 75;
+        }
+
+        return 7;
+    }
+
     function generateSequence(length) {
+
         const result = [];
 
         while (result.length < length) {
+
             const index = Math.floor(Math.random() * 9);
 
             if (
@@ -43,9 +64,11 @@ function Corsi({ onComplete }) {
     }
 
     async function showSequence(newSequence) {
+
         setAcceptingInput(false);
 
         for (const index of newSequence) {
+
             setActiveBlock(index);
 
             await sleep(700);
@@ -56,10 +79,12 @@ function Corsi({ onComplete }) {
         }
 
         setStatus("Now click the blocks in the same order.");
+
         setAcceptingInput(true);
     }
 
-    async function startRound(length, currentMisses = misses) {
+    async function startRound(length) {
+
         setUserSequence([]);
         setSelectedBlocks([]);
         setActiveBlock(null);
@@ -75,6 +100,7 @@ function Corsi({ onComplete }) {
     }
 
     function startTest() {
+
         setStarted(true);
         setCurrentLength(2);
         setMisses(0);
@@ -91,6 +117,7 @@ function Corsi({ onComplete }) {
     }
 
     function handleBlockClick(index) {
+
         if (!acceptingInput) {
             return;
         }
@@ -105,38 +132,37 @@ function Corsi({ onComplete }) {
 
         // Wrong click
         if (newUserSequence[position] !== sequence[position]) {
+
             handleMiss();
+
             return;
         }
 
         // Entire sequence was correct
         if (newUserSequence.length === sequence.length) {
+
             handleSuccess();
         }
     }
 
     function handleSuccess() {
+
         setAcceptingInput(false);
 
         setStatus(`Correct! ${currentLength} blocks.`);
 
-        // This is the longest correct sequence
         const newLength = currentLength + 1;
 
         setCurrentLength(newLength);
 
-        // Maximum is 9
-        if (newLength > 9) {
-            finishTest(currentLength);
-            return;
-        }
-
+        // Continue beyond 9
         setTimeout(() => {
             startRound(newLength);
         }, 1000);
     }
 
     function handleMiss() {
+
         setAcceptingInput(false);
 
         const newMisses = misses + 1;
@@ -145,28 +171,38 @@ function Corsi({ onComplete }) {
 
         setStatus(`Incorrect. Miss ${newMisses} of 2.`);
 
-        // Two misses at this length = test over
+        // Two misses at the same length = test over
         if (newMisses >= 2) {
+
             finishTest(currentLength - 1);
+
             return;
         }
 
         // Try the same length again
         setTimeout(() => {
+
             startRound(currentLength);
+
         }, 1000);
     }
 
     function finishTest(score) {
-        setAcceptingInput(false);
 
+        setAcceptingInput(false);
         setActiveBlock(null);
         setSelectedBlocks([]);
 
-        setStatus(`Test complete. Your score: ${score} blocks.`);
+        const percentile = getPercentile(score);
 
-        // Send result to App.jsx
-        onComplete(score);
+        setStatus(
+            `Test complete. Your score: ${score} blocks.`
+        );
+
+        onComplete({
+            score,
+            percentile
+        });
     }
 
     return (
@@ -181,6 +217,7 @@ function Corsi({ onComplete }) {
             <div className="board">
 
                 {blocks.map(index => (
+
                     <button
                         key={index}
                         className={`
@@ -191,6 +228,7 @@ function Corsi({ onComplete }) {
                         onClick={() => handleBlockClick(index)}
                         disabled={!acceptingInput}
                     />
+
                 ))}
 
             </div>
@@ -200,12 +238,14 @@ function Corsi({ onComplete }) {
             </p>
 
             {!started && (
+
                 <button
                     className="startButton"
                     onClick={startTest}
                 >
                     Start Test
                 </button>
+
             )}
 
         </div>

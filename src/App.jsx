@@ -14,6 +14,7 @@ function App() {
     const [screen, setScreen] = useState("start");
 
     const [preCorsiScore, setPreCorsiScore] = useState(3); // this must be null
+    const [preCorsiPercentile, setPreCorsiPercentile] = useState(null);
     const [preDigitSpanScore, setPreDigitSpanScore] = useState(2); // this must be null
     // const [preTrailMakingResult, setPreTrailMakingResult] = useState(null); // this must be null
     const [preTrailMakingResult, setPreTrailMakingResult] = useState({
@@ -30,6 +31,7 @@ function App() {
     const [summary, setSummary] = useState("");
 
     const [postCorsiScore, setPostCorsiScore] = useState(5);
+    const [postCorsiPercentile, setPostCorsiPercentile] = useState(7);
     const [postDigitSpanScore, setPostDigitSpanScore] = useState(6);
     // const [postTrailMakingResult, setPostTrailMakingResult] = useState(null);
     const [postTrailMakingResult, setPostTrailMakingResult] = useState({
@@ -60,11 +62,15 @@ function App() {
         // del this
     }
 
-    function handlePreCorsiComplete(score) {
-        setPreCorsiScore(score)
-        console.log("Pre-Corsi score:", score);
+    function handlePreCorsiComplete({ score, percentile }) {
 
-        setScreen("digit-span");    
+        setPreCorsiScore(score);
+        setPreCorsiPercentile(percentile);
+
+        console.log("Pre-Corsi score:", score);
+        console.log("Pre-Corsi percentile:", percentile);
+
+        setScreen("results");    // digit-span
     }
 
     function handlePreDigitSpanComplete(score) {
@@ -80,9 +86,14 @@ function App() {
     }
 
 
-    function handlePostCorsiComplete(score) {
+    function handlePostCorsiComplete({ score, percentile }) {
+
         setPostCorsiScore(score);
+        setPostCorsiPercentile(percentile);
+
         console.log("Post-Corsi score:", score);
+        console.log("Post-Corsi percentile:", percentile);
+
         setScreen("post-digit-span");
     }
 
@@ -111,6 +122,7 @@ function App() {
                     name: name,
                     group_name: group,
                     corsi_score: preCorsiScore,
+                    corsi_percentile: preCorsiPercentile,
                     digit_span_score: preDigitSpanScore,
                     trail_a: preTrailMakingResult.partA,
                     trail_b: preTrailMakingResult.partB,
@@ -120,42 +132,43 @@ function App() {
                     missed_sevens: missedSevens,
                     summary: summary,
                     post_corsi_score: postCorsiScore,
+                    post_corsi_percentile: postCorsiPercentile,
                     post_digit_span_score: postDigitSpanScore,
                     post_trail_a: postTrailMakingResult.partA,
                     post_trail_b: postTrailMakingResult.partB,
                     post_trail_difference: postTrailMakingResult.difference,
 
                     // Cognitive Load - CLT
-                    clt_01: cognitiveLoad.clt[0],
-                    clt_02: cognitiveLoad.clt[1],
-                    clt_03: cognitiveLoad.clt[2],
-                    clt_04: cognitiveLoad.clt[3],
-                    clt_05: cognitiveLoad.clt[4],
-                    clt_06: cognitiveLoad.clt[5],
-                    clt_07: cognitiveLoad.clt[6],
-                    clt_08: cognitiveLoad.clt[7],
-                    clt_09: cognitiveLoad.clt[8],
-                    clt_10: cognitiveLoad.clt[9],
-                    clt_11: cognitiveLoad.clt[10],
-                    clt_12: cognitiveLoad.clt[11],
-                    clt_13: cognitiveLoad.clt[12],
-                    clt_14: cognitiveLoad.clt[13],
-                    clt_15: cognitiveLoad.clt[14],
+                    clt_01: cognitiveLoad?.clt?.[0],
+                    clt_02: cognitiveLoad?.clt?.[1],
+                    clt_03: cognitiveLoad?.clt?.[2],
+                    clt_04: cognitiveLoad?.clt?.[3],
+                    clt_05: cognitiveLoad?.clt?.[4],
+                    clt_06: cognitiveLoad?.clt?.[5],
+                    clt_07: cognitiveLoad?.clt?.[6],
+                    clt_08: cognitiveLoad?.clt?.[7],
+                    clt_09: cognitiveLoad?.clt?.[8],
+                    clt_10: cognitiveLoad?.clt?.[9],
+                    clt_11: cognitiveLoad?.clt?.[10],
+                    clt_12: cognitiveLoad?.clt?.[11],
+                    clt_13: cognitiveLoad?.clt?.[12],
+                    clt_14: cognitiveLoad?.clt?.[13],
+                    clt_15: cognitiveLoad?.clt?.[14],
 
                     // Cognitive Load - Leppink
-                    leppink_01: cognitiveLoad.leppink[0],
-                    leppink_02: cognitiveLoad.leppink[1],
-                    leppink_03: cognitiveLoad.leppink[2],
-                    leppink_04: cognitiveLoad.leppink[3],
-                    leppink_05: cognitiveLoad.leppink[4],
-                    leppink_06: cognitiveLoad.leppink[5],
-                    leppink_07: cognitiveLoad.leppink[6],
-                    leppink_08: cognitiveLoad.leppink[7],
-                    leppink_09: cognitiveLoad.leppink[8],
-                    leppink_10: cognitiveLoad.leppink[9],
+                    leppink_01: cognitiveLoad?.leppink?.[0],
+                    leppink_02: cognitiveLoad?.leppink?.[1],
+                    leppink_03: cognitiveLoad?.leppink?.[2],
+                    leppink_04: cognitiveLoad?.leppink?.[3],
+                    leppink_05: cognitiveLoad?.leppink?.[4],
+                    leppink_06: cognitiveLoad?.leppink?.[5],
+                    leppink_07: cognitiveLoad?.leppink?.[6],
+                    leppink_08: cognitiveLoad?.leppink?.[7],
+                    leppink_09: cognitiveLoad?.leppink?.[8],
+                    leppink_10: cognitiveLoad?.leppink?.[9],
 
                     // Paas
-                    paas_mental_effort: cognitiveLoad.paas
+                    paas_mental_effort: cognitiveLoad?.paas
 
 
                 })

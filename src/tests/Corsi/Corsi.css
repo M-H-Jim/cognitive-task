@@ -1,6 +1,9 @@
 .corsi {
-    width: 650px;
+    width: 100%;
+    min-height: 100vh;
     text-align: center;
+    padding: 20px;
+    box-sizing: border-box;
 }
 
 .corsi h1 {
@@ -11,33 +14,30 @@
     color: #bbbbbb;
 }
 
-
-/* Corsi board */
+/* Large Corsi board */
 
 .board {
     position: relative;
 
-    width: 600px;
-    height: 500px;
+    width: min(90vw, 1100px);
+    height: min(70vh, 700px);
 
     margin: 30px auto;
 
     background: #202020;
-
-    border-radius: 12px;
+    border-radius: 16px;
 }
-
 
 /* Individual blocks */
 
 .block {
     position: absolute;
 
-    width: 70px;
-    height: 70px;
+    width: 100px;
+    height: 100px;
 
     border: none;
-    border-radius: 10px;
+    border-radius: 14px;
 
     background: #444;
 
@@ -48,70 +48,65 @@
         transform 0.1s;
 }
 
-
-/* Scattered fixed positions */
+/* Scattered positions */
 
 .block:nth-child(1) {
-    left: 60px;
-    top: 70px;
+    left: 6%;
+    top: 10%;
 }
 
 .block:nth-child(2) {
-    left: 250px;
-    top: 45px;
+    left: 40%;
+    top: 6%;
 }
 
 .block:nth-child(3) {
-    left: 450px;
-    top: 90px;
+    left: 78%;
+    top: 12%;
 }
 
 .block:nth-child(4) {
-    left: 140px;
-    top: 200px;
+    left: 20%;
+    top: 38%;
 }
 
 .block:nth-child(5) {
-    left: 340px;
-    top: 170px;
+    left: 55%;
+    top: 32%;
 }
 
 .block:nth-child(6) {
-    left: 500px;
-    top: 300px;
+    left: 82%;
+    top: 52%;
 }
 
 .block:nth-child(7) {
-    left: 50px;
-    top: 350px;
+    left: 5%;
+    top: 68%;
 }
 
 .block:nth-child(8) {
-    left: 250px;
-    top: 330px;
+    left: 40%;
+    top: 65%;
 }
 
 .block:nth-child(9) {
-    left: 410px;
-    top: 410px;
+    left: 70%;
+    top: 76%;
 }
-
 
 /* Block lighting up */
 
 .block.active {
     background: white;
-
     transform: scale(1.08);
 }
-
 
 /* Participant's selected blocks */
 
 .block.selected {
     background: #4caf50;
 }
-
 
 /* Prevent clicking */
 
@@ -120,14 +115,12 @@
     cursor: default;
 }
 
-
 /* Status */
 
 .status {
     min-height: 24px;
     margin: 10px;
 }
-
 
 /* Start button */
 
