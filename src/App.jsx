@@ -14,8 +14,10 @@ function App() {
     const [screen, setScreen] = useState("start");
 
     const [preCorsiScore, setPreCorsiScore] = useState(3); // this must be null
-    const [preCorsiPercentile, setPreCorsiPercentile] = useState(null);
+    const [preCorsiPercentile, setPreCorsiPercentile] = useState(7);
+
     const [preDigitSpanScore, setPreDigitSpanScore] = useState(2); // this must be null
+    const [preDigitSpanPercentile, setPreDigitSpanPercentile] = useState(null);
     // const [preTrailMakingResult, setPreTrailMakingResult] = useState(null); // this must be null
     const [preTrailMakingResult, setPreTrailMakingResult] = useState({
         partA: 4,
@@ -32,8 +34,11 @@ function App() {
 
     const [postCorsiScore, setPostCorsiScore] = useState(5);
     const [postCorsiPercentile, setPostCorsiPercentile] = useState(7);
+
     const [postDigitSpanScore, setPostDigitSpanScore] = useState(6);
     // const [postTrailMakingResult, setPostTrailMakingResult] = useState(null);
+    const [postDigitSpanPercentile, setPostDigitSpanPercentile] = useState(null);
+
     const [postTrailMakingResult, setPostTrailMakingResult] = useState({
         partA: 4,
         partB: 5,
@@ -53,7 +58,7 @@ function App() {
             return;
         }
 
-        setScreen("corsi"); // this should be corsi but for now group
+        setScreen("digit-span"); // this should be corsi but for now group
         // temp
         const groups = ["AI", "Non-AI", "Control"];
         const randomGroup = groups[Math.floor(Math.random() * groups.length)];
@@ -70,13 +75,16 @@ function App() {
         console.log("Pre-Corsi score:", score);
         console.log("Pre-Corsi percentile:", percentile);
 
-        setScreen("results");    // digit-span
+        setScreen("digit-span");    // digit-span
     }
-
-    function handlePreDigitSpanComplete(score) {
+    function handlePreDigitSpanComplete({ score, percentile }) {
         setPreDigitSpanScore(score);
+        setPreDigitSpanPercentile(percentile);
+
         console.log("Pre-Digit Span score:", score);
-        setScreen("trail-making");
+        console.log("Pre-Digit Span percentile:", percentile);
+
+        setScreen("results");
     }
 
     function handlePreTrailMakingComplete(result) {
@@ -97,9 +105,13 @@ function App() {
         setScreen("post-digit-span");
     }
 
-    function handlePostDigitSpanComplete(score) {
+    function handlePostDigitSpanComplete({ score, percentile }) {
         setPostDigitSpanScore(score);
+        setPostDigitSpanPercentile(percentile);
+
         console.log("Post-Digit Span score:", score);
+        console.log("Post-Digit Span percentile:", percentile);
+
         setScreen("post-trail-making");
     }
 
@@ -124,6 +136,7 @@ function App() {
                     corsi_score: preCorsiScore,
                     corsi_percentile: preCorsiPercentile,
                     digit_span_score: preDigitSpanScore,
+                    digit_span_percentile: preDigitSpanPercentile,
                     trail_a: preTrailMakingResult.partA,
                     trail_b: preTrailMakingResult.partB,
                     trail_difference: preTrailMakingResult.difference,
@@ -134,6 +147,7 @@ function App() {
                     post_corsi_score: postCorsiScore,
                     post_corsi_percentile: postCorsiPercentile,
                     post_digit_span_score: postDigitSpanScore,
+                    post_digit_span_percentile: postDigitSpanPercentile,
                     post_trail_a: postTrailMakingResult.partA,
                     post_trail_b: postTrailMakingResult.partB,
                     post_trail_difference: postTrailMakingResult.difference,

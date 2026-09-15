@@ -31,6 +31,27 @@ function DigitSpan({ onComplete }) {
         return result;
     }
 
+    function getPercentile(score) {
+
+        if (score >= 9) {
+            return 93;
+        }
+
+        if (score === 8) {
+            return 75;
+        }
+
+        if (score === 7) {
+            return 50;
+        }
+
+        if (score === 6) {
+            return 25;
+        }
+
+        return 7;
+    }
+
     function sleep(milliseconds) {
         return new Promise(resolve => {
             setTimeout(resolve, milliseconds);
@@ -134,16 +155,21 @@ function DigitSpan({ onComplete }) {
     }
 
     function finishTest(score) {
-        setAcceptingAnswer(false);
 
+        setAcceptingAnswer(false);
         setDigitDisplay("");
+
+        const percentile = getPercentile(score);
 
         setStatus(
             `Test complete. Your span: ${score} digits.`
         );
 
         // Send the result to App.jsx
-        onComplete(score);
+        onComplete({
+            score,
+            percentile
+        });
     }
 
     return (
