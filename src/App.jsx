@@ -102,7 +102,7 @@ function App() {
 
     async function saveResults() {
         try {
-            const response = await fetch("http://localhost:3000/participants", {
+            const response = await fetch("https://cognitive-task-l4lp.vercel.app/participants", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
