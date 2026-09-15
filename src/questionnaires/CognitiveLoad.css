@@ -1,0 +1,86 @@
+.cognitive-load {
+    width: 900px;
+    margin: 50px auto;
+    padding-bottom: 60px;
+}
+
+.cognitive-load h1 {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.cognitive-load section {
+    background: #1f2937;
+    padding: 30px;
+    margin-bottom: 30px;
+    border-radius: 14px;
+}
+
+.cognitive-load section h2 {
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+.question {
+    background: #273449;
+    padding: 20px;
+    margin-top: 15px;
+    border-radius: 10px;
+}
+
+.question p {
+    margin-top: 0;
+    line-height: 1.5;
+}
+
+/* Vertical answers */
+.scale {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 15px;
+}
+
+.scale label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    padding: 9px 12px;
+    border-radius: 7px;
+
+    cursor: pointer;
+    transition: background 0.15s;
+}
+
+.scale label:hover {
+    background: #34445a;
+}
+
+.scale input {
+    cursor: pointer;
+}
+
+/* Show selected answer */
+.selected-answer {
+    margin-top: 12px;
+    font-size: 14px;
+    color: #9ca3af;
+}
+
+.selected-answer strong {
+    color: white;
+}
+
+.cognitive-load > button {
+    display: block;
+    margin: 30px auto;
+
+    padding: 13px 30px;
+    font-size: 16px;
+
+    border: none;
+    border-radius: 8px;
+
+    cursor: pointer;
+}

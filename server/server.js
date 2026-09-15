@@ -23,27 +23,161 @@ app.get("/test-db", async (req, res) => {
 
 app.post("/participants", async (req, res) => {
     try {
+        console.log("Received data:", req.body);
         const {
             name,
+            group_name,
             corsi_score,
             digit_span_score,
             trail_a,
             trail_b,
-            trail_difference
+            trail_difference,
+            correct_presses,
+            false_presses,
+            missed_sevens,
+            summary,
+            post_corsi_score,
+            post_digit_span_score,
+            post_trail_a,
+            post_trail_b,
+            post_trail_difference,
+
+            clt_01,
+            clt_02,
+            clt_03,
+            clt_04,
+            clt_05,
+            clt_06,
+            clt_07,
+            clt_08,
+            clt_09,
+            clt_10,
+            clt_11,
+            clt_12,
+            clt_13,
+            clt_14,
+            clt_15,
+
+            leppink_01,
+            leppink_02,
+            leppink_03,
+            leppink_04,
+            leppink_05,
+            leppink_06,
+            leppink_07,
+            leppink_08,
+            leppink_09,
+            leppink_10,
+
+            paas_mental_effort
+
         } = req.body;
 
         const result = await pool.query(
             `INSERT INTO participants
-            (name, corsi_score, digit_span_score, trail_a, trail_b, trail_difference)
-            VALUES ($1, $2, $3, $4, $5, $6)
+            (name, 
+            group_name, 
+            corsi_score, 
+            digit_span_score, 
+            trail_a, 
+            trail_b, 
+            trail_difference, 
+            correct_presses, 
+            false_presses, 
+            missed_sevens, 
+            summary,
+            post_corsi_score,
+            post_digit_span_score,
+            post_trail_a,
+            post_trail_b,
+            post_trail_difference,
+
+            clt_01,
+            clt_02,
+            clt_03,
+            clt_04,
+            clt_05,
+            clt_06,
+            clt_07,
+            clt_08,
+            clt_09,
+            clt_10,
+            clt_11,
+            clt_12,
+            clt_13,
+            clt_14,
+            clt_15,
+
+            leppink_01,
+            leppink_02,
+            leppink_03,
+            leppink_04,
+            leppink_05,
+            leppink_06,
+            leppink_07,
+            leppink_08,
+            leppink_09,
+            leppink_10,
+
+            paas_mental_effort
+            )
+            VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16,
+                $17, $18, $19, $20, $21,
+                $22, $23, $24, $25, $26,
+                $27, $28, $29, $30, $31,
+
+                $32, $33, $34, $35, $36,
+                $37, $38, $39, $40, $41,
+
+                $42
+            )
             RETURNING *`,
             [
                 name,
+                group_name,
                 corsi_score,
                 digit_span_score,
                 trail_a,
                 trail_b,
-                trail_difference
+                trail_difference,
+                correct_presses,
+                false_presses,
+                missed_sevens,
+                summary,
+                post_corsi_score,
+                post_digit_span_score,
+                post_trail_a,
+                post_trail_b,
+                post_trail_difference,
+
+                clt_01,
+                clt_02,
+                clt_03,
+                clt_04,
+                clt_05,
+                clt_06,
+                clt_07,
+                clt_08,
+                clt_09,
+                clt_10,
+                clt_11,
+                clt_12,
+                clt_13,
+                clt_14,
+                clt_15,
+
+                leppink_01,
+                leppink_02,
+                leppink_03,
+                leppink_04,
+                leppink_05,
+                leppink_06,
+                leppink_07,
+                leppink_08,
+                leppink_09,
+                leppink_10,
+
+                paas_mental_effort
             ]
         );
 
