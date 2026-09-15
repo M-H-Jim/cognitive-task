@@ -60,7 +60,7 @@ function App() {
             return;
         }
 
-        setScreen("trail-making"); // this should be corsi but for now group
+        setScreen("corsi"); // this should be corsi but for now group
         // temp
         const groups = ["AI", "Non-AI", "Control"];
         const randomGroup = groups[Math.floor(Math.random() * groups.length)];
@@ -92,7 +92,7 @@ function App() {
     function handlePreTrailMakingComplete(result) {
         setPreTrailMakingResult(result);
         console.log("Pre-Trail Making result:", result);
-        setScreen("results"); // treatment
+        setScreen("treatment"); // treatment
     }
 
 
