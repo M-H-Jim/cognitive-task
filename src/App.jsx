@@ -13,17 +13,17 @@ function App() {
     const [name, setName] = useState("");
     const [screen, setScreen] = useState("start");
 
-    const [preCorsiScore, setPreCorsiScore] = useState(3); // this must be null
-    const [preCorsiPercentile, setPreCorsiPercentile] = useState(7);
+    const [preCorsiScore, setPreCorsiScore] = useState(null); // this must be null
+    const [preCorsiPercentile, setPreCorsiPercentile] = useState(null);
 
-    const [preDigitSpanScore, setPreDigitSpanScore] = useState(2); // this must be null
+    const [preDigitSpanScore, setPreDigitSpanScore] = useState(null); // this must be null
     const [preDigitSpanPercentile, setPreDigitSpanPercentile] = useState(null);
     // const [preTrailMakingResult, setPreTrailMakingResult] = useState(null); // this must be null
     const [preTrailMakingResult, setPreTrailMakingResult] = useState({
-        partA: 4,
-        partB: 5,
-        difference: 1,
-        percentile: null
+        partA: 0,
+        partB: 0,
+        difference: 0,
+        percentile: 0
     });
 
     const [group, setGroup] = useState(null);
@@ -33,18 +33,18 @@ function App() {
 
     const [summary, setSummary] = useState("");
 
-    const [postCorsiScore, setPostCorsiScore] = useState(5);
-    const [postCorsiPercentile, setPostCorsiPercentile] = useState(7);
+    const [postCorsiScore, setPostCorsiScore] = useState(null);
+    const [postCorsiPercentile, setPostCorsiPercentile] = useState(null);
 
-    const [postDigitSpanScore, setPostDigitSpanScore] = useState(6);
+    const [postDigitSpanScore, setPostDigitSpanScore] = useState(null);
     // const [postTrailMakingResult, setPostTrailMakingResult] = useState(null);
     const [postDigitSpanPercentile, setPostDigitSpanPercentile] = useState(null);
 
     const [postTrailMakingResult, setPostTrailMakingResult] = useState({
-        partA: 4,
-        partB: 5,
-        difference: 1,
-        percentile: null
+        partA: 0,
+        partB: 0,
+        difference: 0,
+        percentile: 0
     });
 
 
@@ -177,12 +177,24 @@ function App() {
                 })
             });
 
+            if (!response.ok) {
+                throw new Error("Server failed to save results.");
+            }
+
             const data = await response.json();
 
             console.log("Saved participant:", data);
+
+            // Keep your success alert
             alert("Results saved successfully!");
+
+            // Only leave the results screen after successful save
+            setScreen("start");
+
         } catch (error) {
             console.error(error);
+
+            // Stay on the results screen so they can try again
             alert("Failed to save results.");
         }
     }
