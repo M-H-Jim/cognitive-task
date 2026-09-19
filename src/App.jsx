@@ -171,22 +171,7 @@ function App() {
                     clt_12: cognitiveLoad?.clt?.[11],
                     clt_13: cognitiveLoad?.clt?.[12],
                     clt_14: cognitiveLoad?.clt?.[13],
-                    clt_15: cognitiveLoad?.clt?.[14],
-
-                    // Cognitive Load - Leppink
-                    leppink_01: cognitiveLoad?.leppink?.[0],
-                    leppink_02: cognitiveLoad?.leppink?.[1],
-                    leppink_03: cognitiveLoad?.leppink?.[2],
-                    leppink_04: cognitiveLoad?.leppink?.[3],
-                    leppink_05: cognitiveLoad?.leppink?.[4],
-                    leppink_06: cognitiveLoad?.leppink?.[5],
-                    leppink_07: cognitiveLoad?.leppink?.[6],
-                    leppink_08: cognitiveLoad?.leppink?.[7],
-                    leppink_09: cognitiveLoad?.leppink?.[8],
-                    leppink_10: cognitiveLoad?.leppink?.[9],
-
-                    // Paas
-                    paas_mental_effort: cognitiveLoad?.paas
+                    clt_15: cognitiveLoad?.clt?.[14]
 
 
                 })

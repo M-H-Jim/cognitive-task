@@ -3,26 +3,90 @@ import "./Treatment.css";
 import article from "../content/article.txt?raw";
 
 function Treatment({ group, onComplete }) {
-    const [timeLeft, setTimeLeft] = useState(30); // 120s
+    const [started, setStarted] = useState(false);
+
+    const [timeLeft, setTimeLeft] = useState(120);  // 120 sec this is the time for reading the article
     const [number, setNumber] = useState(null);
+
     const answeredRef = useRef(false);
+    const sequenceRef = useRef([]);
+    const indexRef = useRef(0);
+    const completedRef = useRef(false);
+
     const [correctPresses, setCorrectPresses] = useState(0);
     const [falsePresses, setFalsePresses] = useState(0);
     const [missedSevens, setMissedSevens] = useState(0);
 
+    // Generate exactly 24 numbers:
+    // 10 sevens + 14 non-sevens, randomly shuffled.
+    function generateNumberSequence() {
+        const numbers = [];
 
+        // Add exactly 10 sevens
+        for (let i = 0; i < 10; i++) {
+            numbers.push(7);
+        }
 
+        // Add 14 non-seven numbers
+        for (let i = 0; i < 14; i++) {
+            let randomNumber;
+
+            do {
+                randomNumber = Math.floor(Math.random() * 10);
+            } while (randomNumber === 7);
+
+            numbers.push(randomNumber);
+        }
+
+        // Shuffle the 24 numbers
+        for (let i = numbers.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+
+            [numbers[i], numbers[j]] = [numbers[j], numbers[i]];
+        }
+
+        return numbers;
+    }
+
+    // Start the experiment
+    function handleStart() {
+        sequenceRef.current = generateNumberSequence();
+        indexRef.current = 0;
+
+        setTimeLeft(120);   // this should also be the time 120s
+        setNumber(null);
+
+        setCorrectPresses(0);
+        setFalsePresses(0);
+        setMissedSevens(0);
+
+        answeredRef.current = false;
+        completedRef.current = false;
+
+        setStarted(true);
+    }
+
+    // Main 120-second timer
     useEffect(() => {
+        if (!started) {
+            return;
+        }
+
         const timer = setInterval(() => {
             setTimeLeft(time => time - 1);
         }, 1000);
 
         return () => clearInterval(timer);
-    }, []);
+    }, [started]);
 
-
+    // Finish treatment
     useEffect(() => {
-        if (timeLeft <= 0) {
+        if (
+            started &&
+            timeLeft <= 0 &&
+            !completedRef.current
+        ) {
+            completedRef.current = true;
 
             console.log("=== Multitasking Results ===");
             console.log("Group:", group);
@@ -37,6 +101,7 @@ function Treatment({ group, onComplete }) {
             });
         }
     }, [
+        started,
         timeLeft,
         group,
         correctPresses,
@@ -45,10 +110,9 @@ function Treatment({ group, onComplete }) {
         onComplete
     ]);
 
-
-
+    // Number sequence
     useEffect(() => {
-        if (group === "Control") {
+        if (!started || group === "Control") {
             return;
         }
 
@@ -56,48 +120,51 @@ function Treatment({ group, onComplete }) {
         let numberTimer;
 
         function showNextNumber() {
-            const randomNumber = Math.floor(Math.random() * 10);
-            
+            if (indexRef.current >= sequenceRef.current.length) {
+                return;
+            }
+
+            const currentNumber =
+                sequenceRef.current[indexRef.current];
+
+            indexRef.current++;
+
             answeredRef.current = false;
-            
-            setNumber(randomNumber);
+            setNumber(currentNumber);
 
+            // Number disappears automatically after 2 seconds
             numberTimer = setTimeout(() => {
-
-                if (randomNumber === 7 && !answeredRef.current) {
+                if (
+                    currentNumber === 7 &&
+                    !answeredRef.current
+                ) {
                     setMissedSevens(count => count + 1);
                 }
 
                 setNumber(null);
 
-                // const delay = Math.floor(Math.random() * 5000) + 5000;
-                const delay = 3000;
-
-
-                nextTimer = setTimeout(showNextNumber, delay);
-
+                // 3 seconds blank time
+                // 2 seconds visible + 3 seconds blank = 5 seconds
+                nextTimer = setTimeout(showNextNumber, 3000);
             }, 2000);
         }
 
-        // const firstDelay = Math.floor(Math.random() * 5000) + 5000;
-        const firstDelay = 3000;
-
-        nextTimer = setTimeout(showNextNumber, firstDelay);
+        // First number appears immediately after Start
+        showNextNumber();
 
         return () => {
             clearTimeout(nextTimer);
             clearTimeout(numberTimer);
         };
+    }, [started, group]);
 
-    }, [group]);    // for random number 
-
+    // Spacebar handling
     useEffect(() => {
-        if (group === "Control") {
+        if (!started || group === "Control") {
             return;
         }
 
         function handleKeyDown(event) {
-
             if (event.code !== "Space") {
                 return;
             }
@@ -107,14 +174,16 @@ function Treatment({ group, onComplete }) {
             if (number === null || answeredRef.current) {
                 return;
             }
+
             answeredRef.current = true;
+
             if (number === 7) {
                 setCorrectPresses(count => count + 1);
-            }
-            else {
+            } else {
                 setFalsePresses(count => count + 1);
             }
 
+            // Participant responded, so hide the number immediately
             setNumber(null);
         }
 
@@ -123,38 +192,91 @@ function Treatment({ group, onComplete }) {
         return () => {
             window.removeEventListener("keydown", handleKeyDown);
         };
-
-    }, [group, number]);
+    }, [started, group, number]);
 
     let instruction = "";
 
     if (group === "AI") {
         instruction =
             "You may use ChatGPT or Gemini to help you, but do not let AI write the entire summary for you.";
-    }
-    else if (group === "Non-AI") {
+    } else if (group === "Non-AI") {
         instruction =
             "Complete the task without using ChatGPT, Gemini, or other AI tools.";
-    }
-    else if (group === "Control") {
+    } else if (group === "Control") {
         instruction =
             "Read the article and prepare a summary. There is no secondary task.";
     }
 
+    // Instruction screen
+    if (!started) {
+        return (
+            <div className="treatment">
+                <div className="treatment-instructions">
+                    <h1>Task Instructions</h1>
+
+                    <h2>Your Group: {group}</h2>
+
+                    <p>
+                        You will have <strong>2 minutes</strong> to
+                        complete this task.
+                    </p>
+
+                    <p>{instruction}</p>
+
+                    {(group === "AI" || group === "Non-AI") && (
+                        <>
+                            <h3>Number Monitoring</h3>
+
+                            <p>
+                                Numbers will appear on the screen
+                                during the task.
+                            </p>
+
+                            <p>
+                                Whenever you see the number{" "}
+                                <strong>7</strong>, press the{" "}
+                                <strong>SPACE</strong> key.
+                            </p>
+
+                            <p>
+                                Each number may remain on the screen
+                                for up to 2 seconds. If you press
+                                SPACE, it will disappear immediately.
+                            </p>
+
+                            <p>
+                                There will be a new number every
+                                5 seconds.
+                            </p>
+                        </>
+                    )}
+
+                    <button
+                        className="start-button"
+                        onClick={handleStart}
+                    >
+                        Start Experiment
+                    </button>
+                </div>
+            </div>
+        );
+    }
+
+    // Experiment screen
     return (
         <div className="treatment">
-
             <div className="article">
                 <h2>Read the Article</h2>
                 <p>{article}</p>
             </div>
 
             <div className="secondary-task">
-
                 <h2>Your Task</h2>
+
                 <div className="timer">
                     Time remaining: {timeLeft}s
                 </div>
+
                 <p>{instruction}</p>
 
                 {(group === "AI" || group === "Non-AI") && (
@@ -170,12 +292,10 @@ function Treatment({ group, onComplete }) {
                         </div>
                     </>
                 )}
-
             </div>
-
         </div>
     );
 }
 
-
 export default Treatment;
+
