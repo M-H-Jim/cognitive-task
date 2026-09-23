@@ -254,11 +254,11 @@ function Corsi({ onComplete }) {
     return (
         <div className="corsi">
 
-            <h1>Corsi Block-Tapping Test</h1>
+            {/* <h1>Corsi Block-Tapping Test</h1> */}
 
-            <p className="instruction">
+            {/* <p className="instruction">
                 Watch the blocks light up, then click them in the same order.
-            </p>
+            </p> */}
 
             <div className="board">
 
