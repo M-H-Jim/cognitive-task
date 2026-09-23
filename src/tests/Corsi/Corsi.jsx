@@ -11,6 +11,7 @@ function Corsi({ onComplete }) {
     const [selectedBlocks, setSelectedBlocks] = useState([]);
     const [acceptingInput, setAcceptingInput] = useState(false);
     const [started, setStarted] = useState(false);
+    const [instructionsShown, setInstructionsShown] = useState(false);
 
     const [status, setStatus] = useState(
         "Watch the blocks light up, then click them in the same order."
@@ -204,6 +205,51 @@ function Corsi({ onComplete }) {
             percentile
         });
     }
+
+    if (!instructionsShown) {
+        return (
+            <div className="corsi">
+                <div className="corsi-instructions">
+
+                    <h1>নির্দেশনা (Corsi Block-Tapping Test)</h1>
+
+                    <p>
+                        ১. আপনার সামনে স্ক্রিনে কয়েকটি ব্লক (বক্স) দেখা যাবে।
+                    </p>
+
+                    <p>
+                        ২. পরীক্ষক কিছু ব্লক একটার পর একটা স্পর্শ করবেন
+                        (বা স্ক্রিনে হাইলাইট হবে)। আপনার কাজ হলো সেই ক্রমটি
+                        মনে রাখা এবং একই ক্রমে ব্লকগুলোতে ক্লিক করা।
+                    </p>
+
+                    <p>
+                        ৩. শুরুতে ক্রম ছোট থাকবে (২–৩টি ব্লক), ধীরে ধীরে
+                        ক্রম বড় হবে।
+                    </p>
+
+                    <p>
+                        ৪. চেষ্টা করুন যেন সম্ভব সঠিক ক্রমে ব্লকগুলোতে ক্লিক
+                        করতে। ভুল হলে সমস্যা নেই, পরবর্তী ট্রায়ালে মনোযোগ দিন।
+                    </p>
+
+                    <p>
+                        ৫. এই টেস্টের মোট সময়: প্রায় ৫–৭ মিনিট।
+                    </p>
+
+                    <button
+                        className="startButton"
+                        onClick={() => setInstructionsShown(true)}
+                    >
+                        Continue
+                    </button>
+
+                </div>
+            </div>
+        );
+    }
+
+
 
     return (
         <div className="corsi">

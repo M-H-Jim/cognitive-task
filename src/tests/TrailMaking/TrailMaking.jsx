@@ -19,6 +19,9 @@ function TrailMaking({ onComplete }) {
 
     const [wrongCircle, setWrongCircle] = useState(null);
 
+    const [showPartAInstructions, setShowPartAInstructions] = useState(true);
+    const [showPartBInstructions, setShowPartBInstructions] = useState(false);
+
     function generatePositions(count) {
         const positions = [];
         const minimumDistance = 9;
@@ -263,7 +266,7 @@ function TrailMaking({ onComplete }) {
         );
 
         setTimeout(() => {
-            startPartB();
+            setShowPartBInstructions(true);
         }, 1200);
     }
 
@@ -300,6 +303,96 @@ function TrailMaking({ onComplete }) {
         // Send result to App.jsx
         onComplete(result);
     }
+
+
+    if (showPartAInstructions) {
+        return (
+            <div className="trail-making">
+
+                <h1>Part A - নির্দেশনা</h1>
+
+                <p className="instruction">
+                    ১. আপনার সামনে বিভিন্ন স্থানে সংখ্যা (১, ২, ৩, …)
+                    ছড়িয়ে থাকবে।
+                </p>
+
+                <p className="instruction">
+                    ২. আপনার কাজ হলো ১ থেকে ২, ২ থেকে ৩, ৩ থেকে ৪…
+                    এই ক্রমে সংখ্যাগুলোকে দ্রুত এবং সঠিকভাবে যুক্ত করা।
+                </p>
+
+                <p className="instruction">
+                    ৩. চেষ্টা করবেন যত দ্রুত সম্ভব, কিন্তু ভুল যেন না হয়।
+                </p>
+
+                <button
+                    className="start-button"
+                    onClick={() => {
+                        setShowPartAInstructions(false);
+                        setStarted(false);
+                    }}
+                >
+                    Continue
+                </button>
+
+            </div>
+        );
+    }
+
+
+    if (showPartBInstructions) {
+        return (
+            <div className="trail-making">
+
+                <h1>Part B - নির্দেশনা</h1>
+
+                <p className="instruction">
+                    ৪. এই অংশে সংখ্যার পাশাপাশি কিছু ইংরেজি অক্ষর
+                    (A, B, C, …) থাকবে।
+                </p>
+
+                <p className="instruction">
+                    ৫. আপনাকে ১ → A → ২ → B → ৩ → C…
+                    এই ক্রমে সংখ্যা ও অক্ষরগুলো পর্যায়ক্রমে যুক্ত করতে হবে।
+                </p>
+
+                <p className="instruction">
+                    ৬. এখানেও চেষ্টা করবেন যত দ্রুত সম্ভব, কিন্তু ভুল যেন না হয়।
+                </p>
+
+                <p className="instruction">
+                    ৭. মোট সময়: প্রায় ৫–৮ মিনিট (Part A + Part B)।
+                </p>
+
+                <button
+                    className="start-button"
+                    onClick={() => {
+                        setShowPartBInstructions(false);
+                        startPartB();
+                    }}
+                >
+                    Continue
+                </button>
+
+            </div>
+        );
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     return (
         <div className="trail-making">

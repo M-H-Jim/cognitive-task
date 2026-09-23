@@ -11,6 +11,7 @@ function DigitSpan({ onComplete }) {
 
     const [acceptingAnswer, setAcceptingAnswer] = useState(false);
     const [started, setStarted] = useState(false);
+    const [showInstructions, setShowInstructions] = useState(true);
 
     const [status, setStatus] = useState("");
 
@@ -171,6 +172,52 @@ function DigitSpan({ onComplete }) {
             percentile
         });
     }
+
+    if (showInstructions) {
+        return (
+            <div className="digit-span">
+
+                <h1>নির্দেশনা (Digit Span Test)</h1>
+
+                <p className="instruction">
+                    ১. স্ক্রিনে একের পর এক কয়েকটি সংখ্যা দেখা যাবে।
+                </p>
+
+                <p className="instruction">
+                    ২. সংখ্যাগুলো মনোযোগ দিয়ে দেখুন এবং যে ক্রমে
+                    দেখা যাবে সেই ক্রমটি মনে রাখুন।
+                </p>
+
+                <p className="instruction">
+                    ৩. সব সংখ্যা দেখানো শেষ হলে আপনাকে একই ক্রমে
+                    সংখ্যাগুলো লিখতে হবে।
+                </p>
+
+                <p className="instruction">
+                    ৪. শুরুতে সংখ্যার ক্রম ছোট থাকবে। সঠিকভাবে
+                    মনে রাখতে পারলে ধীরে ধীরে ক্রম বড় হবে।
+                </p>
+
+                <p className="instruction">
+                    ৫. যতটা সম্ভব সঠিক ক্রমে সংখ্যাগুলো লিখুন।
+                </p>
+
+                <p className="instruction">
+                    ৬. ভুল হলে চিন্তার কিছু নেই। পরবর্তী সুযোগে
+                    আবার চেষ্টা করতে পারবেন।
+                </p>
+
+                <button
+                    className="start-button"
+                    onClick={() => setShowInstructions(false)}
+                >
+                    Continue
+                </button>
+
+            </div>
+        );
+    }
+
 
     return (
         <div className="digit-span">
