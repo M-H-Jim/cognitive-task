@@ -24,7 +24,7 @@ function TrailMaking({ onComplete }) {
 
     function generatePositions(count) {
         const positions = [];
-        const minimumDistance = 9;
+        const minimumDistance = 12;  // this was 9
 
         let attempts = 0;
 
@@ -309,7 +309,7 @@ function TrailMaking({ onComplete }) {
         return (
             <div className="trail-making">
 
-                <h1>Part A - নির্দেশনা</h1>
+                <h1>Part A - নির্দেশনা (Trail Making Test)</h1>
 
                 <p className="instruction">
                     ১. আপনার সামনে বিভিন্ন স্থানে সংখ্যা (১, ২, ৩, …)
@@ -344,7 +344,7 @@ function TrailMaking({ onComplete }) {
         return (
             <div className="trail-making">
 
-                <h1>Part B - নির্দেশনা</h1>
+                <h1>Part B - নির্দেশনা (Trail Making Test)</h1>
 
                 <p className="instruction">
                     ৪. এই অংশে সংখ্যার পাশাপাশি কিছু ইংরেজি অক্ষর
@@ -380,28 +380,14 @@ function TrailMaking({ onComplete }) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     return (
         <div className="trail-making">
 
-            <h1>Trail Making Test</h1>
+            {/* <h1>Trail Making Test</h1> */}
 
-            <p className="instruction">
+            {/* <p className="instruction">
                 Click the circles in the correct order.
-            </p>
+            </p> */}
 
             <div className="test-area">
 

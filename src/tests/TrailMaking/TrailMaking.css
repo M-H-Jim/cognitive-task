@@ -1,6 +1,9 @@
 .trail-making {
-    width: 900px;
+    width: 100%;
+    max-width: 1100px;
     text-align: center;
+    margin: 0 auto;
+    box-sizing: border-box;
 }
 
 .trail-making h1 {
@@ -14,10 +17,10 @@
 .test-area {
     position: relative;
 
-    width: 850px;
-    height: 600px;
+    width: min(90vw, 1000px);
+    height: min(78vh, 680px);
 
-    margin: 25px auto;
+    margin: 15px auto;
 
     background: #202020;
 
