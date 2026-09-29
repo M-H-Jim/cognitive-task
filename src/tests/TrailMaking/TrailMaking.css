@@ -96,7 +96,7 @@
     color: #181818;
 }
 
-.trail-circle.target {
+/* .trail-circle.target {
     animation: targetGlow 1.2s ease-in-out infinite;
 }
 
@@ -108,4 +108,4 @@
     50% {
         box-shadow: 0 0 18px rgba(255, 255, 255, 0.9);
     }
-}
+} */
