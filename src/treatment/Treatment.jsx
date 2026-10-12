@@ -5,9 +5,9 @@ import "./Treatment.css";
 import article from "../content/article.txt?raw";
 
 
-const TREATMENT_DURATION = 2 * 60; // total experiment time in seconds
+const TREATMENT_DURATION = 5 * 60; // total experiment time in seconds
 const NUMBER_INTERVAL = 10;     // seconds between numbers
-const NUMBER_DISPLAY_TIME = 2;  // how long a number stays visible
+const NUMBER_DISPLAY_TIME = 1;  // how long a number stays visible
 const TOTAL_SEVENS = 10;        // total number of 7s
 
 

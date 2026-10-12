@@ -7,6 +7,7 @@ import Treatment from "./treatment/Treatment";
 import article from "./content/article.txt?raw";
 // import Summary from "./summary/Summary";
 import CognitiveLoad from "./questionnaires/CognitiveLoad";
+import ADEXI from "./questionnaires/ADEXI";
 
 function App() {
 
@@ -56,6 +57,7 @@ function App() {
 
 
     const [cognitiveLoad, setCognitiveLoad] = useState(null);
+    const [adexi, setAdexi] = useState(null);
 
 
 
@@ -179,9 +181,22 @@ function App() {
                     clt_12: cognitiveLoad?.clt?.[11],
                     clt_13: cognitiveLoad?.clt?.[12],
                     clt_14: cognitiveLoad?.clt?.[13],
-                    clt_15: cognitiveLoad?.clt?.[14]
-
-
+                    clt_15: cognitiveLoad?.clt?.[14],
+                    // ADEXI questionnaire
+                    adexi_01: adexi?.adexi?.[0],
+                    adexi_02: adexi?.adexi?.[1],
+                    adexi_03: adexi?.adexi?.[2],
+                    adexi_04: adexi?.adexi?.[3],
+                    adexi_05: adexi?.adexi?.[4],
+                    adexi_06: adexi?.adexi?.[5],
+                    adexi_07: adexi?.adexi?.[6],
+                    adexi_08: adexi?.adexi?.[7],
+                    adexi_09: adexi?.adexi?.[8],
+                    adexi_10: adexi?.adexi?.[9],
+                    adexi_11: adexi?.adexi?.[10],
+                    adexi_12: adexi?.adexi?.[11],
+                    adexi_13: adexi?.adexi?.[12],
+                    adexi_14: adexi?.adexi?.[13]
                 })
             });
 
@@ -334,6 +349,15 @@ function App() {
                 <CognitiveLoad
                     onComplete={(answers) => {
                         setCognitiveLoad(answers);
+                        setScreen("adexi");
+                    }}
+                />
+            )}
+
+            {screen === "adexi" && (
+                <ADEXI
+                    onComplete={(answers) => {
+                        setAdexi(answers);
                         setScreen("results");
                     }}
                 />

@@ -1,0 +1,433 @@
+.adexi {
+    --primary: #8bb7e0;
+    --primary-dark: #c5dcf2;
+    --text-main: #e5e7eb;
+    --text-muted: #9ca3af;
+    --border: #3b4b61;
+    --surface: #1f2937;
+    --surface-soft: #273449;
+    --surface-hover: #34445a;
+
+    width: min(900px, calc(100% - 36px));
+    margin: 48px auto;
+    padding-bottom: 56px;
+
+    color: var(--text-main);
+
+    font-family:
+        "Noto Sans Bengali",
+        "Hind Siliguri",
+        "SolaimanLipi",
+        sans-serif;
+
+    font-size: 16px;
+    line-height: 1.9;
+}
+
+/* =========================================
+   Main heading
+========================================= */
+
+.adexi > h1 {
+    margin: 0 0 30px;
+    padding: 0 0 22px;
+
+    color: var(--primary-dark);
+    font-size: clamp(25px, 4vw, 34px);
+    font-weight: 700;
+    line-height: 1.6;
+    text-align: center;
+
+    border-bottom: 3px solid #526e89;
+}
+
+/* =========================================
+   Instructions
+========================================= */
+
+.adexi .instruction {
+    margin: 0 0 30px;
+    padding: 24px 28px;
+
+    background: var(--surface-soft);
+    border: 1px solid var(--border);
+    border-left: 5px solid #6e96bb;
+    border-radius: 12px;
+
+    color: var(--text-main);
+    font-size: 15px;
+    line-height: 2;
+    text-align: justify;
+
+    overflow-wrap: anywhere;
+}
+
+.adexi .instruction p {
+    margin: 0 0 14px;
+}
+
+.adexi .instruction p:last-child {
+    margin-bottom: 0;
+}
+
+.adexi .instruction strong {
+    color: var(--primary-dark);
+    font-weight: 700;
+}
+
+/* =========================================
+   Numbered response guide
+========================================= */
+
+.adexi .scale-guide {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 8px 12px;
+
+    margin: 18px 0;
+    padding: 18px;
+
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+
+    list-style: none;
+}
+
+.adexi .scale-guide li {
+    padding: 7px 10px;
+
+    background: var(--surface-soft);
+    border: 1px solid #34445a;
+    border-radius: 6px;
+
+    color: var(--text-main);
+    font-size: 14px;
+    line-height: 1.8;
+
+    overflow-wrap: anywhere;
+}
+
+.adexi .scale-guide li strong {
+    margin-right: 5px;
+    color: var(--primary);
+}
+
+/* =========================================
+   Questionnaire section
+========================================= */
+
+.adexi section {
+    padding: 28px;
+
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+
+    box-shadow: 0 5px 22px rgba(0, 0, 0, 0.12);
+}
+
+.adexi section h2 {
+    margin: 0 0 24px;
+    padding-bottom: 16px;
+
+    color: var(--primary-dark);
+    font-size: 22px;
+    font-weight: 700;
+    line-height: 1.7;
+
+    border-bottom: 1px solid var(--border);
+}
+
+/* =========================================
+   Individual question cards
+========================================= */
+
+.adexi .question {
+    margin: 0 0 20px;
+    padding: 22px 24px;
+
+    background: var(--surface-soft);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+
+    transition: border-color 0.2s ease;
+}
+
+.adexi .question:last-child {
+    margin-bottom: 0;
+}
+
+.adexi .question:hover {
+    border-color: #607b99;
+}
+
+/* =========================================
+   Question text
+========================================= */
+
+.adexi .question p {
+    margin: 0 0 18px;
+
+    color: var(--text-main);
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 2;
+    text-align: left;
+
+    overflow-wrap: anywhere;
+}
+
+.adexi .question p strong {
+    display: inline-block;
+    margin-right: 7px;
+
+    color: var(--primary);
+    font-weight: 700;
+}
+
+/* =========================================
+   Nine-point response scale
+========================================= */
+
+.adexi .scale {
+    display: grid;
+    grid-template-columns: repeat(9, minmax(0, 1fr));
+    gap: 8px;
+
+    margin-top: 12px;
+}
+
+/* Individual response option */
+
+.adexi .scale label {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+
+    min-width: 0;
+    min-height: 76px;
+    padding: 10px 4px;
+
+    background: var(--surface);
+    border: 1px solid #3b4b61;
+    border-radius: 9px;
+
+    color: var(--text-main);
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 1.5;
+    text-align: center;
+
+    cursor: pointer;
+    user-select: none;
+
+    transition:
+        background-color 0.15s ease,
+        border-color 0.15s ease;
+}
+
+/* Radio buttons */
+
+.adexi .scale input {
+    width: 17px;
+    height: 17px;
+    margin: 0;
+
+    accent-color: var(--primary);
+    cursor: pointer;
+    flex-shrink: 0;
+}
+
+/* Hover and keyboard accessibility */
+
+.adexi .scale label:hover {
+    background: var(--surface-hover);
+    border-color: #607b99;
+}
+
+.adexi .scale label:focus-within {
+    outline: 2px solid var(--primary);
+    outline-offset: 2px;
+}
+
+/* =========================================
+   Selected answer text
+========================================= */
+
+.adexi .selected-answer {
+    margin-top: 14px;
+
+    color: var(--text-muted);
+    font-size: 14px;
+    line-height: 1.8;
+}
+
+.adexi .selected-answer strong {
+    color: var(--text-main);
+}
+
+/* =========================================
+   Submit button
+========================================= */
+
+.adexi > button {
+    display: block;
+    min-width: 180px;
+    margin: 32px auto 0;
+    padding: 13px 32px;
+
+    background: #426b91;
+    border: 1px solid #426b91;
+    border-radius: 9px;
+
+    color: #ffffff;
+    font-family: inherit;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 1.8;
+
+    cursor: pointer;
+
+    transition:
+        background-color 0.2s ease,
+        border-color 0.2s ease;
+}
+
+.adexi > button:hover {
+    background: #345777;
+    border-color: #345777;
+}
+
+.adexi > button:focus-visible {
+    outline: 3px solid var(--primary);
+    outline-offset: 4px;
+}
+
+/* =========================================
+   Tablet responsiveness
+========================================= */
+
+@media (max-width: 768px) {
+    .adexi {
+        margin-top: 30px;
+    }
+
+    .adexi section {
+        padding: 20px;
+    }
+
+    .adexi .question {
+        padding: 18px;
+    }
+
+    .adexi .scale {
+        gap: 5px;
+    }
+
+    .adexi .scale label {
+        min-height: 68px;
+    }
+
+    .adexi .scale-guide {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+/* =========================================
+   Mobile responsiveness
+========================================= */
+
+@media (max-width: 480px) {
+    .adexi {
+        width: calc(100% - 24px);
+        margin: 22px auto;
+        padding-bottom: 36px;
+
+        font-size: 15px;
+    }
+
+    .adexi > h1 {
+        margin-bottom: 22px;
+        padding-bottom: 16px;
+
+        font-size: 24px;
+    }
+
+    .adexi .instruction {
+        padding: 17px;
+
+        font-size: 14px;
+        text-align: left;
+    }
+
+    .adexi .scale-guide {
+        grid-template-columns: 1fr;
+        gap: 6px;
+        padding: 12px;
+    }
+
+    .adexi .scale-guide li {
+        padding: 8px 10px;
+    }
+
+    .adexi section {
+        padding: 14px;
+        border-radius: 12px;
+    }
+
+    .adexi section h2 {
+        font-size: 19px;
+    }
+
+    .adexi .question {
+        margin-bottom: 15px;
+        padding: 14px 12px;
+    }
+
+    .adexi .question p {
+        font-size: 14px;
+        line-height: 2;
+    }
+
+    /* Three-column answer layout on mobile */
+
+    .adexi .scale {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 8px;
+    }
+
+    .adexi .scale label {
+        min-height: 58px;
+        padding: 8px 4px;
+
+        flex-direction: row;
+        gap: 7px;
+
+        font-size: 14px;
+    }
+
+    .adexi .scale input {
+        width: 16px;
+        height: 16px;
+    }
+
+    .adexi > button {
+        width: 100%;
+        max-width: 300px;
+    }
+}
+
+/* =========================================
+   Reduced-motion accessibility
+========================================= */
+
+@media (prefers-reduced-motion: reduce) {
+    .adexi *,
+    .adexi *::before,
+    .adexi *::after {
+        transition: none !important;
+    }
+}

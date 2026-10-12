@@ -100,26 +100,39 @@ function CognitiveLoad({ onComplete }) {
                                 (_, i) => i + 1
                             ).map(value => (
 
-                                <label key={value}>
+                            <label key={value}>
 
-                                    <input
-                                        type="radio"
-                                        name={`clt-${index}`}
-                                        value={value}
-                                        checked={
-                                            cltAnswers[index] === value
-                                        }
-                                        onChange={() =>
-                                            handleCltChange(
-                                                index,
-                                                value
-                                            )
-                                        }
-                                    />
+                                <input
+                                    type="radio"
+                                    name={`clt-${index}`}
+                                    value={value}
+                                    checked={
+                                        cltAnswers[index] === value
+                                    }
+                                    onChange={() =>
+                                        handleCltChange(index, value)
+                                    }
+                                />
 
-                                    {value}
+                                {value}
 
-                                </label>
+                                <span className="scale-label">
+                                    {
+                                        [
+                                            "একদমই প্রযোজ্য নয়",
+                                            "খুব কম প্রযোজ্য",
+                                            "কম প্রযোজ্য",
+                                            "কিছুটা প্রযোজ্য",
+                                            "মাঝামাঝি/নিরপেক্ষ",
+                                            "মোটামুটি প্রযোজ্য",
+                                            "বেশ প্রযোজ্য",
+                                            "খুব বেশি প্রযোজ্য",
+                                            "সম্পূর্ণভাবে প্রযোজ্য"
+                                        ][value - 1]
+                                    }
+                                </span>
+
+                            </label>
 
                             ))}
 
