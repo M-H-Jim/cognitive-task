@@ -1,86 +1,433 @@
 .cognitive-load {
-    width: 900px;
-    margin: 50px auto;
-    padding-bottom: 60px;
+    --primary: #8bb7e0;
+    --primary-dark: #c5dcf2;
+    --text-main: #e5e7eb;
+    --text-muted: #9ca3af;
+    --border: #3b4b61;
+    --surface: #1f2937;
+    --surface-soft: #273449;
+    --surface-hover: #34445a;
+
+    width: min(900px, calc(100% - 36px));
+    margin: 48px auto;
+    padding-bottom: 56px;
+
+    color: var(--text-main);
+
+    font-family:
+        "Noto Sans Bengali",
+        "Hind Siliguri",
+        "SolaimanLipi",
+        sans-serif;
+
+    font-size: 16px;
+    line-height: 1.9;
 }
 
-.cognitive-load h1 {
+/* =========================================
+   Main heading
+========================================= */
+
+.cognitive-load > h1 {
+    margin: 0 0 30px;
+    padding: 0 0 22px;
+
+    color: var(--primary-dark);
+    font-size: clamp(25px, 4vw, 34px);
+    font-weight: 700;
+    line-height: 1.6;
     text-align: center;
-    margin-bottom: 40px;
+
+    border-bottom: 3px solid #526e89;
 }
+
+/* =========================================
+   Instructions
+========================================= */
+
+.cognitive-load .instruction {
+    margin: 0 0 30px;
+    padding: 24px 28px;
+
+    background: var(--surface-soft);
+    border: 1px solid var(--border);
+    border-left: 5px solid #6e96bb;
+    border-radius: 12px;
+
+    color: var(--text-main);
+    font-size: 15px;
+    line-height: 2;
+    text-align: justify;
+
+    overflow-wrap: anywhere;
+}
+
+.cognitive-load .instruction p {
+    margin: 0 0 14px;
+}
+
+.cognitive-load .instruction p:last-child {
+    margin-bottom: 0;
+}
+
+.cognitive-load .instruction strong {
+    color: var(--primary-dark);
+    font-weight: 700;
+}
+
+/* =========================================
+   Numbered response guide
+========================================= */
+
+.cognitive-load .scale-guide {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 8px 12px;
+
+    margin: 18px 0;
+    padding: 18px;
+
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+
+    list-style: none;
+}
+
+.cognitive-load .scale-guide li {
+    padding: 7px 10px;
+
+    background: var(--surface-soft);
+    border: 1px solid #34445a;
+    border-radius: 6px;
+
+    color: var(--text-main);
+    font-size: 14px;
+    line-height: 1.8;
+
+    overflow-wrap: anywhere;
+}
+
+.cognitive-load .scale-guide li strong {
+    margin-right: 5px;
+    color: var(--primary);
+}
+
+/* =========================================
+   Questionnaire section
+========================================= */
 
 .cognitive-load section {
-    background: #1f2937;
-    padding: 30px;
-    margin-bottom: 30px;
-    border-radius: 14px;
+    padding: 28px;
+
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+
+    box-shadow: 0 5px 22px rgba(0, 0, 0, 0.12);
 }
 
 .cognitive-load section h2 {
-    margin-top: 0;
-    margin-bottom: 10px;
+    margin: 0 0 24px;
+    padding-bottom: 16px;
+
+    color: var(--primary-dark);
+    font-size: 22px;
+    font-weight: 700;
+    line-height: 1.7;
+
+    border-bottom: 1px solid var(--border);
 }
 
-.question {
-    background: #273449;
-    padding: 20px;
-    margin-top: 15px;
-    border-radius: 10px;
+/* =========================================
+   Individual question cards
+========================================= */
+
+.cognitive-load .question {
+    margin: 0 0 20px;
+    padding: 22px 24px;
+
+    background: var(--surface-soft);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+
+    transition: border-color 0.2s ease;
 }
 
-.question p {
-    margin-top: 0;
-    line-height: 1.5;
+.cognitive-load .question:last-child {
+    margin-bottom: 0;
 }
 
-/* Vertical answers */
-.scale {
+.cognitive-load .question:hover {
+    border-color: #607b99;
+}
+
+/* =========================================
+   Question text
+========================================= */
+
+.cognitive-load .question p {
+    margin: 0 0 18px;
+
+    color: var(--text-main);
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 2;
+    text-align: left;
+
+    overflow-wrap: anywhere;
+}
+
+.cognitive-load .question p strong {
+    display: inline-block;
+    margin-right: 7px;
+
+    color: var(--primary);
+    font-weight: 700;
+}
+
+/* =========================================
+   Nine-point response scale
+========================================= */
+
+.cognitive-load .scale {
+    display: grid;
+    grid-template-columns: repeat(9, minmax(0, 1fr));
+    gap: 8px;
+
+    margin-top: 12px;
+}
+
+/* Individual response option */
+
+.cognitive-load .scale label {
     display: flex;
     flex-direction: column;
-    gap: 8px;
-    margin-top: 15px;
-}
-
-.scale label {
-    display: flex;
     align-items: center;
-    gap: 10px;
+    justify-content: center;
+    gap: 7px;
 
-    padding: 9px 12px;
-    border-radius: 7px;
+    min-width: 0;
+    min-height: 76px;
+    padding: 10px 4px;
+
+    background: var(--surface);
+    border: 1px solid #3b4b61;
+    border-radius: 9px;
+
+    color: var(--text-main);
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 1.5;
+    text-align: center;
 
     cursor: pointer;
-    transition: background 0.15s;
+    user-select: none;
+
+    transition:
+        background-color 0.15s ease,
+        border-color 0.15s ease;
 }
 
-.scale label:hover {
-    background: #34445a;
-}
+/* Radio buttons */
 
-.scale input {
+.cognitive-load .scale input {
+    width: 17px;
+    height: 17px;
+    margin: 0;
+
+    accent-color: var(--primary);
     cursor: pointer;
+    flex-shrink: 0;
 }
 
-/* Show selected answer */
-.selected-answer {
-    margin-top: 12px;
+/* Hover and keyboard accessibility */
+
+.cognitive-load .scale label:hover {
+    background: var(--surface-hover);
+    border-color: #607b99;
+}
+
+.cognitive-load .scale label:focus-within {
+    outline: 2px solid var(--primary);
+    outline-offset: 2px;
+}
+
+/* =========================================
+   Selected answer text
+========================================= */
+
+.cognitive-load .selected-answer {
+    margin-top: 14px;
+
+    color: var(--text-muted);
     font-size: 14px;
-    color: #9ca3af;
+    line-height: 1.8;
 }
 
-.selected-answer strong {
-    color: white;
+.cognitive-load .selected-answer strong {
+    color: var(--text-main);
 }
+
+/* =========================================
+   Submit button
+========================================= */
 
 .cognitive-load > button {
     display: block;
-    margin: 30px auto;
+    min-width: 180px;
+    margin: 32px auto 0;
+    padding: 13px 32px;
 
-    padding: 13px 30px;
+    background: #426b91;
+    border: 1px solid #426b91;
+    border-radius: 9px;
+
+    color: #ffffff;
+    font-family: inherit;
     font-size: 16px;
-
-    border: none;
-    border-radius: 8px;
+    font-weight: 600;
+    line-height: 1.8;
 
     cursor: pointer;
+
+    transition:
+        background-color 0.2s ease,
+        border-color 0.2s ease;
+}
+
+.cognitive-load > button:hover {
+    background: #345777;
+    border-color: #345777;
+}
+
+.cognitive-load > button:focus-visible {
+    outline: 3px solid var(--primary);
+    outline-offset: 4px;
+}
+
+/* =========================================
+   Tablet responsiveness
+========================================= */
+
+@media (max-width: 768px) {
+    .cognitive-load {
+        margin-top: 30px;
+    }
+
+    .cognitive-load section {
+        padding: 20px;
+    }
+
+    .cognitive-load .question {
+        padding: 18px;
+    }
+
+    .cognitive-load .scale {
+        gap: 5px;
+    }
+
+    .cognitive-load .scale label {
+        min-height: 68px;
+    }
+
+    .cognitive-load .scale-guide {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+/* =========================================
+   Mobile responsiveness
+========================================= */
+
+@media (max-width: 480px) {
+    .cognitive-load {
+        width: calc(100% - 24px);
+        margin: 22px auto;
+        padding-bottom: 36px;
+
+        font-size: 15px;
+    }
+
+    .cognitive-load > h1 {
+        margin-bottom: 22px;
+        padding-bottom: 16px;
+
+        font-size: 24px;
+    }
+
+    .cognitive-load .instruction {
+        padding: 17px;
+
+        font-size: 14px;
+        text-align: left;
+    }
+
+    .cognitive-load .scale-guide {
+        grid-template-columns: 1fr;
+        gap: 6px;
+        padding: 12px;
+    }
+
+    .cognitive-load .scale-guide li {
+        padding: 8px 10px;
+    }
+
+    .cognitive-load section {
+        padding: 14px;
+        border-radius: 12px;
+    }
+
+    .cognitive-load section h2 {
+        font-size: 19px;
+    }
+
+    .cognitive-load .question {
+        margin-bottom: 15px;
+        padding: 14px 12px;
+    }
+
+    .cognitive-load .question p {
+        font-size: 14px;
+        line-height: 2;
+    }
+
+    /* Three-column answer layout on mobile */
+
+    .cognitive-load .scale {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 8px;
+    }
+
+    .cognitive-load .scale label {
+        min-height: 58px;
+        padding: 8px 4px;
+
+        flex-direction: row;
+        gap: 7px;
+
+        font-size: 14px;
+    }
+
+    .cognitive-load .scale input {
+        width: 16px;
+        height: 16px;
+    }
+
+    .cognitive-load > button {
+        width: 100%;
+        max-width: 300px;
+    }
+}
+
+/* =========================================
+   Reduced-motion accessibility
+========================================= */
+
+@media (prefers-reduced-motion: reduce) {
+    .cognitive-load *,
+    .cognitive-load *::before,
+    .cognitive-load *::after {
+        transition: none !important;
+    }
 }

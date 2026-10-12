@@ -4,28 +4,35 @@
     text-align: center;
     margin: 0 auto;
     box-sizing: border-box;
+
+    color: #e5e7eb;
 }
 
 .trail-making h1 {
     margin-bottom: 10px;
+    color: #c5dcf2;
 }
 
 .instruction {
-    color: #bbbbbb;
+    color: #9ca3af;
 }
+
+/* Test area — original dimensions preserved */
 
 .test-area {
     position: relative;
 
     width: min(90vw, 1000px);
-    height: min(78vh, 680px);
+    height: min(80vh, 680px);
 
     margin: 15px auto;
 
-    background: #202020;
-
+    background: #1f2937;
+    border: 1px solid #3b4b61;
     border-radius: 12px;
 }
+
+/* Numbered circles — original size and positioning preserved */
 
 .trail-circle {
     position: absolute;
@@ -37,32 +44,43 @@
     justify-content: center;
     align-items: center;
 
-    border: 2px solid white;
+    border: 2px solid #aab7c6;
     border-radius: 50%;
 
-    background: #303030;
-    color: white;
+    background: #303b4b;
+    color: #f3f4f6;
 
     font-size: 17px;
     font-weight: bold;
 
     cursor: pointer;
-
     user-select: none;
 
     transform: translate(-50%, -50%);
+
+    transition:
+        background-color 0.15s ease,
+        border-color 0.15s ease,
+        box-shadow 0.15s ease;
 }
 
 .trail-circle:hover {
-    background: #444;
+    background: #34445a;
+    border-color: #8bb7e0;
+    box-shadow: 0 0 0 3px rgba(139, 183, 224, 0.12);
 }
 
+/* Correct target */
+
 .trail-circle.correct {
-    background: #4caf50;
-    border-color: #4caf50;
+    background: #286344;
+    border-color: #54b889;
+    color: #ffffff;
 
     pointer-events: none;
 }
+
+/* Incorrect target */
 
 .trail-circle.wrong {
     animation: wrongFlash 300ms;
@@ -70,42 +88,191 @@
 
 @keyframes wrongFlash {
     0% {
-        background: #f44336;
+        background: #b83b43;
+        border-color: #f87171;
     }
 
     100% {
-        background: #303030;
+        background: #303b4b;
+        border-color: #aab7c6;
     }
 }
 
+/* Status message — original sizing preserved */
+
 .status {
     min-height: 24px;
+    color: #e5e7eb;
 }
+
+/* Start button — original dimensions and spacing preserved */
 
 .start-button {
     padding: 12px 28px;
 
-    border: none;
+    border: 1px solid #426b91;
     border-radius: 7px;
 
     font-size: 16px;
 
     cursor: pointer;
 
-    background: white;
-    color: #181818;
+    background: #426b91;
+    color: #ffffff;
+
+    transition:
+        background-color 0.2s ease,
+        border-color 0.2s ease;
 }
 
-/* .trail-circle.target {
+.start-button:hover {
+    background: #345777;
+    border-color: #345777;
+}
+
+.start-button:focus-visible {
+    outline: 3px solid #8bb7e0;
+    outline-offset: 3px;
+}
+
+/* Optional target glow — original feature preserved if enabled */
+
+/*
+.trail-circle.target {
     animation: targetGlow 1.2s ease-in-out infinite;
 }
 
 @keyframes targetGlow {
     0%, 100% {
-        box-shadow: 0 0 0px rgba(255, 255, 255, 0);
+        box-shadow: 0 0 0 rgba(139, 183, 224, 0);
     }
 
     50% {
-        box-shadow: 0 0 18px rgba(255, 255, 255, 0.9);
+        box-shadow: 0 0 18px rgba(139, 183, 224, 0.65);
     }
-} */
+}
+*/
+
+/* Accessibility without changing layout */
+
+@media (prefers-reduced-motion: reduce) {
+    .trail-circle,
+    .start-button {
+        transition: none;
+    }
+
+    .trail-circle.wrong {
+        animation: none;
+    }
+}
+
+.trail-making:has(> .instruction) {
+    width: 90%;
+    max-width: 850px;
+    box-sizing: border-box;
+
+    margin: 35px auto;
+    padding: 36px;
+
+    background: #1f2937;
+    border: 1px solid #3b4b61;
+    border-radius: 16px;
+
+    color: #e5e7eb;
+    text-align: left;
+
+    font-family:
+        "Hind Siliguri",
+        "Noto Sans Bengali",
+        "SolaimanLipi",
+        sans-serif;
+
+    font-size: 16px;
+    line-height: 2;
+}
+
+/* Instruction heading */
+
+.trail-making:has(> .instruction) > h1 {
+    margin: 0 0 28px;
+    padding-bottom: 18px;
+
+    color: #c5dcf2;
+    font-size: 30px;
+    font-weight: 700;
+    line-height: 1.6;
+    text-align: center;
+
+    border-bottom: 2px solid #426b91;
+}
+
+/* Individual instruction cards */
+
+.trail-making:has(> .instruction) > p.instruction {
+    margin: 0 0 14px;
+    padding: 14px 18px;
+
+    background: #273449;
+    border: 1px solid #34445a;
+    border-radius: 9px;
+
+    color: #dbe4ee;
+    font-size: 16px;
+    line-height: 2;
+
+    overflow-wrap: anywhere;
+}
+
+/* Continue button */
+
+.trail-making:has(> .instruction) > .start-button {
+    display: block;
+
+    margin: 30px auto 0;
+    padding: 12px 32px;
+
+    background: #426b91;
+    border: 1px solid #426b91;
+    border-radius: 9px;
+
+    color: #ffffff;
+    font-family: inherit;
+    font-size: 16px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+        background-color 0.2s ease,
+        border-color 0.2s ease;
+}
+
+.trail-making:has(> .instruction) > .start-button:hover {
+    background: #345777;
+    border-color: #345777;
+}
+
+.trail-making:has(> .instruction) > .start-button:focus-visible {
+    outline: 3px solid #8bb7e0;
+    outline-offset: 4px;
+}
+
+/* Responsive presentation */
+
+@media (max-width: 600px) {
+    .trail-making:has(> .instruction) {
+        width: 94%;
+        margin: 20px auto;
+        padding: 20px;
+    }
+
+    .trail-making:has(> .instruction) > h1 {
+        font-size: 24px;
+    }
+
+    .trail-making:has(> .instruction) > p.instruction {
+        padding: 12px;
+        font-size: 15px;
+        line-height: 1.9;
+    }
+}

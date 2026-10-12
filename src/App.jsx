@@ -26,7 +26,7 @@ function App() {
         percentile: 0
     });
 
-    const [group, setGroup] = useState(null);
+    const [group, setGroup] = useState(null);   // This should be null
     const [correctPresses, setCorrectPresses] = useState(null);
     const [falsePresses, setFalsePresses] = useState(null);
     const [missedSevens, setMissedSevens] = useState(null);

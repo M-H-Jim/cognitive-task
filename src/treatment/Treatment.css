@@ -11,6 +11,8 @@
     padding: 30px 0;
 
     align-items: start;
+
+    color: #e5e7eb;
 }
 
 /* ---------------------------------
@@ -26,7 +28,9 @@
     background: #1f2937;
     padding: 30px;
     border-radius: 12px;
+    border: 1px solid #3b4b61;
 
+    color: #e5e7eb;
     line-height: 1.7;
 
     overflow-y: auto;
@@ -34,6 +38,7 @@
 
 .article h2 {
     margin-top: 0;
+    color: #c5dcf2;
 }
 
 /* ---------------------------------
@@ -49,7 +54,9 @@
     background: #1f2937;
     padding: 30px;
     border-radius: 12px;
+    border: 1px solid #3b4b61;
 
+    color: #e5e7eb;
     text-align: center;
 
     position: sticky;
@@ -60,6 +67,7 @@
 
 .secondary-task h2 {
     margin-top: 0;
+    color: #c5dcf2;
 }
 
 /* ---------------------------------
@@ -70,6 +78,8 @@
     font-weight: bold;
     font-size: 18px;
     margin-bottom: 20px;
+
+    color: #8bb7e0;
 }
 
 /* ---------------------------------
@@ -80,6 +90,8 @@
     font-size: 80px;
     font-weight: bold;
     margin-top: 100px;
+
+    color: #c5dcf2;
 }
 
 /* ---------------------------------
@@ -97,10 +109,14 @@
     background: #1f2937;
     padding: 30px;
     border-radius: 12px;
+    border: 1px solid #3b4b61;
+
+    color: #e5e7eb;
 }
 
 .mcq-section h2 {
     margin-top: 0;
+    color: #c5dcf2;
 }
 
 /* ---------------------------------
@@ -114,6 +130,8 @@
 .mcq-question h3 {
     margin-bottom: 15px;
     line-height: 1.5;
+
+    color: #e5e7eb;
 }
 
 /* ---------------------------------
@@ -136,21 +154,200 @@
 
     border-radius: 8px;
 
+    background: #273449;
+    border: 1px solid #3b4b61;
+
+    color: #e5e7eb;
     cursor: pointer;
 
     line-height: 1.5;
+
+    transition:
+        background-color 0.15s ease,
+        border-color 0.15s ease;
 }
 
 .mcq-option:hover {
-    background: #374151;
+    background: #34445a;
+    border-color: #607b99;
 }
 
 .mcq-option input {
     margin-top: 4px;
     cursor: pointer;
+
+    accent-color: #8bb7e0;
+}
+
+.mcq-option input:focus-visible {
+    outline: 2px solid #8bb7e0;
+    outline-offset: 2px;
 }
 
 .mcq-option span {
     flex: 1;
 }
 
+.treatment-instructions {
+    width: 90%;
+    max-width: 850px;
+    box-sizing: border-box;
+    margin: 35px auto;
+    padding: 36px;
+
+    background: #1f2937;
+    border: 1px solid #3b4b61;
+    border-radius: 16px;
+
+    color: #e5e7eb;
+
+    font-family:
+        "Hind Siliguri",
+        "Noto Sans Bengali",
+        "SolaimanLipi",
+        sans-serif;
+
+    font-size: 16px;
+    line-height: 2;
+}
+
+/* Main heading */
+
+.treatment-instructions > h1 {
+    margin: 0 0 28px;
+    padding-bottom: 18px;
+
+    color: #c5dcf2;
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 1.6;
+    text-align: center;
+
+    border-bottom: 2px solid #426b91;
+}
+
+/* Group heading */
+
+.treatment-instructions > h2 {
+    margin: 0 0 24px;
+    padding: 16px 20px;
+
+    background: #273449;
+    border-left: 4px solid #8bb7e0;
+    border-radius: 8px;
+
+    color: #c5dcf2;
+    font-size: 21px;
+    font-weight: 600;
+    line-height: 1.7;
+}
+
+/* Section headings */
+
+.treatment-instructions > h3 {
+    margin: 28px 0 14px;
+    padding-bottom: 10px;
+
+    color: #8bb7e0;
+    font-size: 19px;
+    font-weight: 600;
+
+    border-bottom: 1px solid #3b4b61;
+}
+
+/* Individual instruction paragraphs */
+
+.treatment-instructions > p {
+    margin: 0 0 14px;
+    padding: 14px 18px;
+
+    background: #273449;
+    border: 1px solid #34445a;
+    border-radius: 9px;
+
+    color: #dbe4ee;
+    font-size: 16px;
+    line-height: 2;
+
+    overflow-wrap: anywhere;
+}
+
+/* Emphasized text */
+
+.treatment-instructions strong {
+    color: #a9cbed;
+    font-weight: 700;
+}
+
+/* Start button */
+
+.treatment-instructions .start-button {
+    display: block;
+    margin: 30px auto 0;
+    padding: 13px 32px;
+
+    background: #426b91;
+    border: 1px solid #426b91;
+    border-radius: 9px;
+
+    color: #ffffff;
+    font-family: inherit;
+    font-size: 16px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+        background-color 0.2s ease,
+        border-color 0.2s ease;
+}
+
+.treatment-instructions .start-button:hover {
+    background: #345777;
+    border-color: #345777;
+}
+
+.treatment-instructions .start-button:focus-visible {
+    outline: 3px solid #8bb7e0;
+    outline-offset: 4px;
+}
+
+/* Responsive styling */
+
+@media (max-width: 600px) {
+    .treatment-instructions {
+        width: 94%;
+        margin: 20px auto;
+        padding: 20px;
+    }
+
+    .treatment-instructions > h1 {
+        font-size: 26px;
+    }
+
+    .treatment-instructions > h2 {
+        padding: 12px 14px;
+        font-size: 18px;
+    }
+
+    .treatment-instructions > h3 {
+        font-size: 17px;
+    }
+
+    .treatment-instructions > p {
+        padding: 12px;
+        font-size: 15px;
+        line-height: 1.9;
+    }
+}
+
+.treatment:has(> .treatment-instructions) {
+    display: block;
+}
+
+.treatment:has(> .treatment-instructions) > .treatment-instructions {
+    width: 100%;
+    max-width: 850px;
+    margin: 35px auto;
+    box-sizing: border-box;
+}
