@@ -1,6 +1,6 @@
 import { useState } from "react";
 import "./App.css";
-import Corsi from "./tests/Corsi/Corsi";
+// import Corsi from "./tests/Corsi/Corsi";
 // import DigitSpan from "./tests/DigitSpan/DigitSpan";
 import TrailMaking from "./tests/TrailMaking/TrailMaking";
 import Treatment from "./treatment/Treatment";
@@ -13,8 +13,8 @@ function App() {
     const [name, setName] = useState("");
     const [screen, setScreen] = useState("start");
 
-    const [preCorsiScore, setPreCorsiScore] = useState(null); // this must be null
-    const [preCorsiPercentile, setPreCorsiPercentile] = useState(null);
+    // const [preCorsiScore, setPreCorsiScore] = useState(null); // this must be null
+    // const [preCorsiPercentile, setPreCorsiPercentile] = useState(null);
 
     // const [preDigitSpanScore, setPreDigitSpanScore] = useState(null); // this must be null
     // const [preDigitSpanPercentile, setPreDigitSpanPercentile] = useState(null);
@@ -40,8 +40,8 @@ function App() {
 
 
 
-    const [postCorsiScore, setPostCorsiScore] = useState(null);
-    const [postCorsiPercentile, setPostCorsiPercentile] = useState(null);
+    // const [postCorsiScore, setPostCorsiScore] = useState(null);
+    // const [postCorsiPercentile, setPostCorsiPercentile] = useState(null);
 
     // const [postDigitSpanScore, setPostDigitSpanScore] = useState(null);
     // const [postTrailMakingResult, setPostTrailMakingResult] = useState(null);
@@ -76,16 +76,16 @@ function App() {
         // del this
     }
 
-    function handlePreCorsiComplete({ score, percentile }) {
+    // function handlePreCorsiComplete({ score, percentile }) {
 
-        setPreCorsiScore(score);
-        setPreCorsiPercentile(percentile);
+    //     setPreCorsiScore(score);
+    //     setPreCorsiPercentile(percentile);
 
-        console.log("Pre-Corsi score:", score);
-        console.log("Pre-Corsi percentile:", percentile);
+    //     console.log("Pre-Corsi score:", score);
+    //     console.log("Pre-Corsi percentile:", percentile);
 
-        setScreen("trail-making");    // digit-span
-    }
+    //     setScreen("trail-making");    // digit-span
+    // }
 
 
     // function handlePreDigitSpanComplete({ score, percentile }) {
@@ -109,16 +109,16 @@ function App() {
     }
 
 
-    function handlePostCorsiComplete({ score, percentile }) {
+    // function handlePostCorsiComplete({ score, percentile }) {
 
-        setPostCorsiScore(score);
-        setPostCorsiPercentile(percentile);
+    //     setPostCorsiScore(score);
+    //     setPostCorsiPercentile(percentile);
 
-        console.log("Post-Corsi score:", score);
-        console.log("Post-Corsi percentile:", percentile);
+    //     console.log("Post-Corsi score:", score);
+    //     console.log("Post-Corsi percentile:", percentile);
 
-        setScreen("post-trail-making");
-    }
+    //     setScreen("post-trail-making");
+    // }
 
     // function handlePostDigitSpanComplete({ score, percentile }) {
     //     setPostDigitSpanScore(score);
@@ -148,8 +148,6 @@ function App() {
                 body: JSON.stringify({
                     name: name,
                     group_name: group,
-                    corsi_score: preCorsiScore,
-                    corsi_percentile: preCorsiPercentile,
                     trail_a: preTrailMakingResult.partA,
                     trail_b: preTrailMakingResult.partB,
                     trail_difference: preTrailMakingResult.difference,
@@ -161,8 +159,6 @@ function App() {
                     mcq2: mcq2,
                     mcq3: mcq3,
                     mcq4: mcq4,
-                    post_corsi_score: postCorsiScore,
-                    post_corsi_percentile: postCorsiPercentile,
                     post_trail_b_percentile: postTrailMakingResult.percentile,
                     post_trail_a: postTrailMakingResult.partA,
                     post_trail_b: postTrailMakingResult.partB,
@@ -249,7 +245,7 @@ function App() {
                     <button
                         onClick={() => {
                             setGroup("AI");
-                            setScreen("corsi");
+                            setScreen("trail-making");
                         }}
                     >
                         AI-Assisted
@@ -258,7 +254,7 @@ function App() {
                     <button
                         onClick={() => {
                             setGroup("Non-AI");
-                            setScreen("corsi");
+                            setScreen("trail-making");
                         }}
                     >
                         Non-AI
@@ -267,7 +263,7 @@ function App() {
                     <button
                         onClick={() => {
                             setGroup("Control");
-                            setScreen("corsi");
+                            setScreen("trail-making");
                         }}
                     >
                         Single-Task Control
@@ -277,11 +273,11 @@ function App() {
 
             )}
 
-
+{/* 
             {screen === "corsi" && (
                 <Corsi onComplete={handlePreCorsiComplete} />
             )}
-
+ */}
             {/* {screen === "digit-span" && (
                 <DigitSpan onComplete={handlePreDigitSpanComplete} />
             )} */}
@@ -306,7 +302,7 @@ function App() {
                         setMcq4(results.mcq4);
 
 
-                        setScreen("post-corsi");
+                        setScreen("post-trail-making");
 
                     }}
                 />
@@ -321,10 +317,10 @@ function App() {
                     }}
                 />
             )} */}
-
+{/* 
             {screen === "post-corsi" && (
                 <Corsi onComplete={handlePostCorsiComplete} />
-            )}
+            )} */}
 
             {/* {screen === "post-digit-span" && (
                 <DigitSpan onComplete={handlePostDigitSpanComplete} />
@@ -348,7 +344,7 @@ function App() {
                 <div className="card">
                     <h1>Results</h1>
 
-                    <p>Corsi: {preCorsiScore}</p>
+                    {/* <p>Corsi: {preCorsiScore}</p> */}
                     {/* <p>Digit Span: {preDigitSpanScore}</p> */}
                     <p>Trail A: {preTrailMakingResult?.partA.toFixed(2)}s</p>
                     <p>Trail B: {preTrailMakingResult?.partB.toFixed(2)}s</p>
@@ -359,7 +355,7 @@ function App() {
 
                     {/* <p>{summary}</p> */}
 
-                    <p>Post-Corsi: {postCorsiScore}</p>
+                    {/* <p>Post-Corsi: {postCorsiScore}</p> */}
                     {/* <p>Post-Digit Span: {postDigitSpanScore}</p> */}
 
                     <p>

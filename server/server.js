@@ -27,7 +27,6 @@ app.post("/participants", async (req, res) => {
         const {
             name,
             group_name,
-            corsi_score, corsi_percentile,
             trail_a,
             trail_b,
             trail_difference, trail_b_percentile,
@@ -38,7 +37,6 @@ app.post("/participants", async (req, res) => {
             mcq2,
             mcq3,
             mcq4,
-            post_corsi_score, post_corsi_percentile,
             post_trail_a,
             post_trail_b,
             post_trail_difference, post_trail_b_percentile,
@@ -65,7 +63,6 @@ app.post("/participants", async (req, res) => {
             `INSERT INTO participants
             (name, 
             group_name, 
-            corsi_score, corsi_percentile,
             trail_a, 
             trail_b, 
             trail_difference, trail_b_percentile,
@@ -76,7 +73,6 @@ app.post("/participants", async (req, res) => {
             mcq2,
             mcq3,
             mcq4,
-            post_corsi_score, post_corsi_percentile,
             post_trail_a,
             post_trail_b,
             post_trail_difference, post_trail_b_percentile,
@@ -102,13 +98,12 @@ app.post("/participants", async (req, res) => {
                 $22, $23, $24, $25, $26,
                 $27, $28, $29, $30, $31,
 
-                $32, $33, $34, $35, $36
+                $32
             )
             RETURNING *`,
             [
                 name,
                 group_name,
-                corsi_score, corsi_percentile,
                 trail_a,
                 trail_b,
                 trail_difference, trail_b_percentile,
@@ -119,7 +114,6 @@ app.post("/participants", async (req, res) => {
                 mcq2,
                 mcq3,
                 mcq4,
-                post_corsi_score, post_corsi_percentile,
                 post_trail_a,
                 post_trail_b,
                 post_trail_difference, post_trail_b_percentile,
