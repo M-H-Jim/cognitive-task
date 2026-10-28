@@ -57,6 +57,7 @@ function App() {
 
 
     const [cognitiveLoad, setCognitiveLoad] = useState(null);
+    const [preAdexi, setPreAdexi] = useState(null);
     const [adexi, setAdexi] = useState(null);
 
 
@@ -182,6 +183,23 @@ function App() {
                     clt_13: cognitiveLoad?.clt?.[12],
                     clt_14: cognitiveLoad?.clt?.[13],
                     clt_15: cognitiveLoad?.clt?.[14],
+
+                    // ADEXI Pre-test
+                    pre_adexi_01: preAdexi?.adexi?.[0],
+                    pre_adexi_02: preAdexi?.adexi?.[1],
+                    pre_adexi_03: preAdexi?.adexi?.[2],
+                    pre_adexi_04: preAdexi?.adexi?.[3],
+                    pre_adexi_05: preAdexi?.adexi?.[4],
+                    pre_adexi_06: preAdexi?.adexi?.[5],
+                    pre_adexi_07: preAdexi?.adexi?.[6],
+                    pre_adexi_08: preAdexi?.adexi?.[7],
+                    pre_adexi_09: preAdexi?.adexi?.[8],
+                    pre_adexi_10: preAdexi?.adexi?.[9],
+                    pre_adexi_11: preAdexi?.adexi?.[10],
+                    pre_adexi_12: preAdexi?.adexi?.[11],
+                    pre_adexi_13: preAdexi?.adexi?.[12],
+                    pre_adexi_14: preAdexi?.adexi?.[13],
+
                     // ADEXI questionnaire
                     adexi_01: adexi?.adexi?.[0],
                     adexi_02: adexi?.adexi?.[1],
@@ -260,7 +278,7 @@ function App() {
                     <button
                         onClick={() => {
                             setGroup("AI");
-                            setScreen("trail-making");
+                            setScreen("adexi-pre");  // used to be trail-making
                         }}
                     >
                         AI-Assisted
@@ -269,7 +287,7 @@ function App() {
                     <button
                         onClick={() => {
                             setGroup("Non-AI");
-                            setScreen("trail-making");
+                            setScreen("adexi-pre"); // used to be trail-making
                         }}
                     >
                         Non-AI
@@ -278,7 +296,7 @@ function App() {
                     <button
                         onClick={() => {
                             setGroup("Control");
-                            setScreen("trail-making");
+                            setScreen("adexi-pre"); // used to be trail-making
                         }}
                     >
                         Single-Task Control
@@ -296,6 +314,15 @@ function App() {
             {/* {screen === "digit-span" && (
                 <DigitSpan onComplete={handlePreDigitSpanComplete} />
             )} */}
+
+            {screen === "adexi-pre" && (
+                <ADEXI
+                    onComplete={(answers) => {
+                        setPreAdexi(answers);
+                        setScreen("trail-making");
+                    }}
+                />
+            )}
 
             {screen === "trail-making" && (
                 <TrailMaking onComplete={handlePreTrailMakingComplete} />
@@ -317,7 +344,7 @@ function App() {
                         setMcq4(results.mcq4);
 
 
-                        setScreen("post-trail-making");
+                        setScreen("adexi"); // used to be post-trail-making
 
                     }}
                 />
@@ -341,6 +368,15 @@ function App() {
                 <DigitSpan onComplete={handlePostDigitSpanComplete} />
             )} */}
 
+            {screen == "adexi" && (
+                <ADEXI
+                    onComplete={(answers) => {
+                        setAdexi(answers);
+                        setScreen("post-trail-making");
+                    }}
+                />
+            )}
+
             {screen === "post-trail-making" && (
                 <TrailMaking onComplete={handlePostTrailMakingComplete} />
             )}
@@ -349,19 +385,19 @@ function App() {
                 <CognitiveLoad
                     onComplete={(answers) => {
                         setCognitiveLoad(answers);
-                        setScreen("adexi");
+                        setScreen("results");
                     }}
                 />
             )}
 
-            {screen === "adexi" && (
+            {/* {screen === "adexi" && (
                 <ADEXI
                     onComplete={(answers) => {
                         setAdexi(answers);
                         setScreen("results");
                     }}
                 />
-            )}
+            )} */}
 
 
             {screen === "results" && (
