@@ -57,6 +57,21 @@ app.post("/participants", async (req, res) => {
             clt_14,
             clt_15,
 
+            pre_adexi_01,
+            pre_adexi_02,
+            pre_adexi_03,
+            pre_adexi_04,
+            pre_adexi_05,
+            pre_adexi_06,
+            pre_adexi_07,
+            pre_adexi_08,
+            pre_adexi_09,
+            pre_adexi_10,
+            pre_adexi_11,
+            pre_adexi_12,
+            pre_adexi_13,
+            pre_adexi_14,
+
             adexi_01,
             adexi_02,
             adexi_03,
@@ -108,6 +123,22 @@ app.post("/participants", async (req, res) => {
             clt_14,
             clt_15,
 
+            pre_adexi_01,
+            pre_adexi_02,
+            pre_adexi_03,
+            pre_adexi_04,
+            pre_adexi_05,
+            pre_adexi_06,
+            pre_adexi_07,
+            pre_adexi_08,
+            pre_adexi_09,
+            pre_adexi_10,
+            pre_adexi_11,
+            pre_adexi_12,
+            pre_adexi_13,
+            pre_adexi_14,
+
+
             adexi_01,
             adexi_02,
             adexi_03,
@@ -128,7 +159,8 @@ app.post("/participants", async (req, res) => {
                 $22, $23, $24, $25, $26,
                 $27, $28, $29, $30, $31,
                 $32, $33, $34, $35, $36, $37, $38, $39, $40,
-                $41, $42, $43, $44, $45, $46
+                $41, $42, $43, $44, $45, $46, $47, $48, $49, $50,
+                $51, $52, $53, $54, $55, $56, $57, $58, $59, $60
             )
             RETURNING *`,
             [
@@ -164,6 +196,23 @@ app.post("/participants", async (req, res) => {
                 clt_14,
                 clt_15,
                 
+                pre_adexi_01,
+                pre_adexi_02,
+                pre_adexi_03,
+                pre_adexi_04,
+                pre_adexi_05,
+                pre_adexi_06,
+                pre_adexi_07,
+                pre_adexi_08,
+                pre_adexi_09,
+                pre_adexi_10,
+                pre_adexi_11,
+                pre_adexi_12,
+                pre_adexi_13,
+                pre_adexi_14,
+
+
+
                 adexi_01,
                 adexi_02,
                 adexi_03,
